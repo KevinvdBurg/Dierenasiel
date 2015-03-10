@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Dierenasiel.Administration">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIIAAAAAAAAA=</HashCode>
+      <FileName>Administration.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Animal" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Dierenasiel.Animal">
+    <Position X="2.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAAAEAAAEAAAAAAQAAAAQAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Animal.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="DateOfBirth" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Dierenasiel.Cat">
+    <Position X="0.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Cat.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Dierenasiel.Dog">
+    <Position X="3.5" Y="5.25" Width="1.5" />
+    <AssociationLine Name="LastWalkDate" Type="Dierenasiel.SimpleDate">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-1.234" Y="0.247" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAQAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Dog.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="LastWalkDate" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Dierenasiel.SimpleDate">
+    <Position X="4.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAJAAAAAAEAAAAAAAAAAAAAAAEAAAAAAAAAAA=</HashCode>
+      <FileName>SimpleDate.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
