@@ -27,9 +27,13 @@ namespace Dierenasiel
             animalTypeComboBox.Items.Add(Animals.Cat);
             animalTypeComboBox.Items.Add(Animals.Dog);
             animalTypeComboBox.SelectedIndex = 0;
+
+            //Default Cats and Dogs
             administration.Add(new Dog("Ivan", "3212", new SimpleDate(12, 3, 2014), new SimpleDate(12, 3, 2015)));
             administration.Add(new Dog("Milton", "45231", new SimpleDate(6, 12, 2010), new SimpleDate(11, 3, 2015)));
             administration.Add(new Cat("Kevin", "23452", new SimpleDate(12, 3, 405), "Mummified"));
+
+            //Ini Refresh
             RefreshAnimals(false);
         }
 
@@ -42,16 +46,19 @@ namespace Dierenasiel
         {
             if (animalTypeComboBox.SelectedItem.Equals(Animals.Cat))
             {
+                //Create New Cat
                 Cat nyanCat = new Cat(tbName.Text, tbChip.Text, new SimpleDate(dtpDOB.Value.Day, dtpDOB.Value.Month, dtpDOB.Value.Year), txBadHabit.Text);
                 administration.Add(nyanCat);
             }
             else if (animalTypeComboBox.SelectedItem.Equals(Animals.Dog))
             {
+                //Create New Dog
                 Dog dogeDog = new Dog(tbName.Text, tbChip.Text, new SimpleDate(dtpDOB.Value.Day, dtpDOB.Value.Month, dtpDOB.Value.Year), new SimpleDate(dtpLastWalkDate.Value.Day, dtpLastWalkDate.Value.Month, dtpLastWalkDate.Value.Year));
                 administration.Add(dogeDog);
             }
             else
             {
+                //What?
                 MessageBox.Show("What?!");
             }
             RefreshAnimals(false);
@@ -97,12 +104,14 @@ namespace Dierenasiel
 
         private void animalTypeComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            //Disables the LastWalkdate if the Animal type is a Cat
             if (animalTypeComboBox.SelectedItem.Equals(Animals.Cat))
             {
                 txBadHabit.Enabled = true;
                 dtpLastWalkDate.Enabled = false;
 
             }
+            //Disables BadHabits if the Animal type is a Cat
             else if (animalTypeComboBox.SelectedItem.Equals(Animals.Dog))
             {
                 txBadHabit.Enabled = false;

@@ -45,8 +45,14 @@ namespace Dierenasiel
 
         public Animal FindAnimal(string chipRegistrationNumber)
         {
-            //todo
-            return Animal;
+            foreach (Animal animal in animals)
+            {
+                if (animal.ChipRegistrationNumber == chipRegistrationNumber)
+                {
+                    return animal;
+                }
+            }
+            
         }
     }
 }
