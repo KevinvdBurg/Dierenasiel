@@ -16,6 +16,7 @@ namespace Dierenasiel
             animals = new List<Animal>();
         }
 
+        //Add an Animal to the list
         public bool Add(Animal animal)
         {
             try
@@ -29,6 +30,7 @@ namespace Dierenasiel
             }
         }
 
+        //Search the Animal list by chipRegistrationNumber and removes it
         public bool RemoveAnimal(string chipRegistrationNumber)
         {
             Animal animalToRemove = null;
@@ -43,6 +45,7 @@ namespace Dierenasiel
             return true;
         }
 
+        //Search the Animal list by chipRegistrationNumber
         public Animal FindAnimal(string chipRegistrationNumber)
         {
             foreach (Animal animal in animals)

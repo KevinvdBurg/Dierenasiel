@@ -123,7 +123,8 @@ namespace Dierenasiel
                 dtpLastWalkDate.Enabled = false;
             }
         }
-
+        
+        //Refresh the combobox and the lists
         private void RefreshAnimals(bool hasChanged)
         {
             
@@ -162,6 +163,7 @@ namespace Dierenasiel
             lblInfoExtra.Text = "";
         }
 
+        //Checkbox changed check
         private void chbReserved_CheckedChanged(object sender, EventArgs e)
         {
             if (!checkboxcheck)
@@ -185,6 +187,8 @@ namespace Dierenasiel
             
         }
 
+
+        //Add all the data to the info box
         private void cbAnimalNames_SelectedIndexChanged(object sender, EventArgs e)
         {
             foreach (Animal animal in administration.animals)
