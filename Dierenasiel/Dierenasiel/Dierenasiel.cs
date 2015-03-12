@@ -13,6 +13,7 @@ namespace Dierenasiel
     public partial class Dierenasiel : Form
     {
         private Administration administration;
+        private bool checkboxcheck = false;
         enum Animals
         {
             Cat,
@@ -116,14 +117,14 @@ namespace Dierenasiel
 
         private void RefreshAnimals(bool hasChanged)
         {
+            
+            lbReserved.Items.Clear();
+            lbNotReserved.Items.Clear();
             if (!hasChanged)
             {
                 cbAnimalNames.Items.Clear();
             }
             
-            lbReserved.Items.Clear();
-            lbNotReserved.Items.Clear();
-         
             foreach (Animal animal in administration.animals)
             {
                 if (!hasChanged)
@@ -135,6 +136,7 @@ namespace Dierenasiel
                 {
                     lbReserved.Items.Add(animal.ToString());
                 }
+
                 if (!animal.IsReserved)
                 {
                     lbNotReserved.Items.Add(animal.ToString());
@@ -142,40 +144,36 @@ namespace Dierenasiel
             }
 
             cbAnimalNames.Text = "";
-            cbAnimalNames.SelectedIndex = 0;
+            cbAnimalNames.SelectedIndex = -1;
+
+            lblpInfoName.Text = "";
+            lblpInfoChip.Text = "";
+            lblpInfoDOB.Text = "";
+            lblpInfoExtra.Text = "";
+            lblInfoExtra.Text = "";
         }
 
         private void chbReserved_CheckedChanged(object sender, EventArgs e)
         {
-            foreach (Animal animal in administration.animals)
+            if (!checkboxcheck)
             {
-                if (cbAnimalNames.SelectedItem == animal.Name)
+                foreach (Animal animal in administration.animals)
                 {
-                    if (chbReserved.Checked)
+                    if (cbAnimalNames.SelectedItem == animal.Name)
                     {
-                        animal.IsReserved = true;
-                    }
-                    else if (!chbReserved.Checked)
-                    {
-                        animal.IsReserved = false;
+                        if (chbReserved.Checked)
+                        {
+                            animal.IsReserved = true;
+                        }
+                        else if (!chbReserved.Checked)
+                        {
+                            animal.IsReserved = false;
+                        }
                     }
                 }
+                RefreshAnimals(true);
             }
-            RefreshAnimals(true);
-        }
-
-        private void btnDeleteAnimal_Click(object sender, EventArgs e)
-        {
-            string tempChip = ""; 
-            foreach (Animal animal in administration.animals)
-            {
-                if (cbAnimalNames.SelectedItem == animal.Name)
-                {
-                    tempChip = animal.ChipRegistrationNumber;
-                }
-            }
-            administration.RemoveAnimal(tempChip);
-            RefreshAnimals(false);
+            
         }
 
         private void cbAnimalNames_SelectedIndexChanged(object sender, EventArgs e)
@@ -188,13 +186,18 @@ namespace Dierenasiel
                     lblpInfoDOB.Text = animal.DateOfBirth.ToString();
                     lblpInfoChip.Text = animal.ChipRegistrationNumber;
 
+
                     if (animal.IsReserved)
                     {
+                        checkboxcheck = true;
                         chbReserved.Checked = true;
+                        checkboxcheck = false;
                     }
                     else
                     {
+                        checkboxcheck = true;
                         chbReserved.Checked = false;
+                        checkboxcheck = false;
                     }
 
                     if (animal.GetType() == typeof(Cat))
@@ -211,7 +214,26 @@ namespace Dierenasiel
                     }
                 }
             }
+            DisableButtons();
+        }
 
+        private void btnDeleteAnimal_Click(object sender, EventArgs e)
+        {
+            string tempChip = "";
+            foreach (Animal animal in administration.animals)
+            {
+                if (cbAnimalNames.SelectedItem == animal.Name)
+                {
+                    tempChip = animal.ChipRegistrationNumber;
+                }
+            }
+            administration.RemoveAnimal(tempChip);
+            RefreshAnimals(false);
+            DisableButtons();
+        }
+
+        private void DisableButtons()
+        {
             if (String.IsNullOrEmpty(cbAnimalNames.Text))
             {
                 chbReserved.Enabled = false;
