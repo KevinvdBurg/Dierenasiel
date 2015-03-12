@@ -44,7 +44,7 @@ namespace Dierenasiel
         /// which contains the virtual ToString method which you can override for your own good.
         /// </summary>
         /// <returns></returns>
-        public string ToString()
+        public override string ToString()
         {
             return date.ToString("dd-MM-yyyy");
         }

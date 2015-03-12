@@ -11,7 +11,7 @@ namespace Dierenasiel
 
         public string Name { get; private set; }
 
-        public bool IsReserved { get; private set; }
+        public bool IsReserved { get; set; }
 
         public string ChipRegistrationNumber { get; private set; }
 
@@ -44,8 +44,24 @@ namespace Dierenasiel
                 ChipRegistrationNumber = chipRegistrationNumber;
             }
 
-            Name = name;
-            DateOfBirth = dateOfBirth;
+            if (name == null)
+            {
+                Name = null;
+            }
+            else
+            {
+                Name = name;
+            }
+
+            if (dateOfBirth == null)
+            {
+                DateOfBirth = null;
+            }
+            else
+            {
+                DateOfBirth = dateOfBirth;     
+            }
+            
             IsReserved = false; 
         }
 
@@ -75,7 +91,7 @@ namespace Dierenasiel
             }
 
             string nameString;
-            if (Name == null || Name == "")
+            if (String.IsNullOrEmpty(Name))
             {
                 nameString = "noname";
             }

@@ -3,7 +3,7 @@
   <Class Name="Dierenasiel.Administration">
     <Position X="0.5" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>BAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIIAAAAAAAAA=</HashCode>
+      <HashCode>BAIAAAAAAAAAAAAAAAAAAAAAEAAAAAAAIIAAAAAAAAA=</HashCode>
       <FileName>Administration.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -11,7 +11,7 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="Dierenasiel.Animal">
-    <Position X="2.5" Y="1.75" Width="1.5" />
+    <Position X="3.25" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAACAAAAAAEAAAEAAAAAAQAAAASAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Animal.cs</FileName>
@@ -21,17 +21,17 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="Dierenasiel.Cat">
-    <Position X="1.5" Y="5.25" Width="1.5" />
+    <Position X="1.5" Y="6" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAACAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Cat.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Dierenasiel.Dog">
-    <Position X="3.5" Y="5.25" Width="1.5" />
+    <Position X="4" Y="6" Width="1.5" />
     <AssociationLine Name="LastWalkDate" Type="Dierenasiel.SimpleDate">
       <MemberNameLabel ManuallyPlaced="true">
-        <Position X="-1.234" Y="0.247" />
+        <Position X="0.06" Y="-0.265" />
       </MemberNameLabel>
     </AssociationLine>
     <TypeIdentifier>
@@ -43,7 +43,7 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="Dierenasiel.SimpleDate">
-    <Position X="4.5" Y="1.5" Width="1.5" />
+    <Position X="6.5" Y="2" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAJAAAAAAkAAAAAAAAAAAAAAAEAAAAAQAAAAA=</HashCode>
       <FileName>SimpleDate.cs</FileName>
