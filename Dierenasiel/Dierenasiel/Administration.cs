@@ -55,7 +55,7 @@ namespace Dierenasiel
                     return animal;
                 }
             }
-            
+            return null;
         }
     }
 }
