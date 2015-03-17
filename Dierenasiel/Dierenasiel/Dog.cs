@@ -21,7 +21,27 @@ namespace Dierenasiel
         /// <param name="dateOfBirth">The date of birth of the animal or null if unknown</param>
         /// <param name="name">The name of the animal or null if unknown</param>
         /// <param name="lastWalkDate">The date of the last walk with the dog or null if unknown.</param>
-        public Dog(string name, string chipRegistrationNumber, SimpleDate dateOfBirth, SimpleDate lastWalkDate) : base(name, chipRegistrationNumber, dateOfBirth)
+        public override decimal Price
+        {
+            get
+            {
+                    return base.Price;
+            }
+            set
+            {
+                if (ChipRegistrationNumber < 50000)
+                {
+                    base.Price = 200;
+                }
+                else
+                {
+                    {
+                        base.Price = 350;
+                    }
+                }
+            }
+        }
+        public Dog(string name, int chipRegistrationNumber, SimpleDate dateOfBirth, SimpleDate lastWalkDate) : base(name, chipRegistrationNumber, dateOfBirth)
         {
             LastWalkDate = lastWalkDate;
         }

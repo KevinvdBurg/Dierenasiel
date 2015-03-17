@@ -25,7 +25,21 @@ namespace Dierenasiel
         /// <param name="name">The name of the animal or null if unknown</param>
         /// <param name="badHabits">The nasty habbits of the cat (e.g. "scratches the couch")
         ///                           or null if none.</param>
-        public Cat(string name, string chipRegistrationNumber, SimpleDate dateOfBirth, string badHabits) : base(name, chipRegistrationNumber, dateOfBirth)
+        public override decimal Price
+        {
+            get { return base.Price; }
+            set {
+                    if (60 - BadHabits.Length < 20)
+                    {
+                        base.Price= 20;
+                    }
+                    else
+                    {
+                        base.Price= 60 - BadHabits.Length;
+                    }
+                }
+        }
+        public Cat(string name, int chipRegistrationNumber, SimpleDate dateOfBirth, string badHabits) : base(name, chipRegistrationNumber, dateOfBirth)
         {
             BadHabits = badHabits;
         }

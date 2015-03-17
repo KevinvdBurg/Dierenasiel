@@ -54,6 +54,7 @@
       <DependentUpon>Dierenasiel.cs</DependentUpon>
     </Compile>
     <Compile Include="Dog.cs" />
+    <Compile Include="Prijsbaar.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SimpleDate.cs" />

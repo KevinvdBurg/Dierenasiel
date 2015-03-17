@@ -29,9 +29,9 @@ namespace Dierenasiel
             animalTypeComboBox.SelectedIndex = 0;
 
             //Default Cats and Dogs
-            administration.Add(new Dog("Ivan", "3212", new SimpleDate(12, 3, 2014), new SimpleDate(12, 3, 2015)));
-            administration.Add(new Dog("Milton", "45231", new SimpleDate(6, 12, 2010), new SimpleDate(11, 3, 2015)));
-            administration.Add(new Cat("Kevin", "23452", new SimpleDate(12, 3, 405), "Mummified"));
+            administration.Add(new Dog("Ivan", 3212, new SimpleDate(12, 3, 2014), new SimpleDate(12, 3, 2015)));
+            administration.Add(new Dog("Milton", 45231, new SimpleDate(6, 12, 2010), new SimpleDate(11, 3, 2015)));
+            administration.Add(new Cat("Kevin", 23452, new SimpleDate(12, 3, 405), "Mummified"));
 
             //Ini Refresh
             RefreshAnimals(false);
@@ -44,16 +44,24 @@ namespace Dierenasiel
         /// </summary>
         private void createAnimalButton_Click(object sender, EventArgs e)
         {
+            Animal result =
+                administration.animals.Find(Animal => Animal.ChipRegistrationNumber == Convert.ToInt32(nupChip.Value));
+
+            if (result != null)
+            {
+                MessageBox.Show("chipnr is al in gebruik");
+            }
+
             if (animalTypeComboBox.SelectedItem.Equals(Animals.Cat))
             {
                 //Create New Cat
-                Cat nyanCat = new Cat(tbName.Text, tbChip.Text, new SimpleDate(dtpDOB.Value.Day, dtpDOB.Value.Month, dtpDOB.Value.Year), txBadHabit.Text);
+                Cat nyanCat = new Cat(tbName.Text, Convert.ToInt32(nupChip.Value), new SimpleDate(dtpDOB.Value.Day, dtpDOB.Value.Month, dtpDOB.Value.Year), txBadHabit.Text);
                 administration.Add(nyanCat);
             }
             else if (animalTypeComboBox.SelectedItem.Equals(Animals.Dog))
             {
                 //Create New Dog
-                Dog dogeDog = new Dog(tbName.Text, tbChip.Text, new SimpleDate(dtpDOB.Value.Day, dtpDOB.Value.Month, dtpDOB.Value.Year), new SimpleDate(dtpLastWalkDate.Value.Day, dtpLastWalkDate.Value.Month, dtpLastWalkDate.Value.Year));
+                Dog dogeDog = new Dog(tbName.Text, Convert.ToInt32(nupChip.Value), new SimpleDate(dtpDOB.Value.Day, dtpDOB.Value.Month, dtpDOB.Value.Year), new SimpleDate(dtpLastWalkDate.Value.Day, dtpLastWalkDate.Value.Month, dtpLastWalkDate.Value.Year));
                 administration.Add(dogeDog);
             }
             else
@@ -63,44 +71,6 @@ namespace Dierenasiel
             }
             RefreshAnimals(false);
         }
-
-        /// <summary>
-        /// Show the info of the animal referenced by the 'animal' field. not very usefull!
-        /// </summary>
-        /*private void showInfoButton_Click(object sender, EventArgs e)
-        {
-            foreach (Animal animal in administration.animals)
-            {
-                if (cbAnimalNames.SelectedItem == animal.Name)
-                {
-                    lblpInfoName.Text = animal.Name;
-                    lblpInfoDOB.Text = animal.DateOfBirth.ToString();
-                    lblpInfoChip.Text = animal.ChipRegistrationNumber;
-                    
-                    if (animal.IsReserved)
-                    {
-                        chbReserved.Checked = true;
-                    }
-                    else
-                    {
-                        chbReserved.Checked = false;
-                    }
-
-                    if (animal.GetType() == typeof(Cat))
-                    {
-                        Cat cat = (Cat)animal;
-                        lblInfoExtra.Text = "Bad Habit";
-                        lblpInfoExtra.Text = cat.BadHabits;
-                    }
-                    else if (animal.GetType() == typeof (Dog))
-                    {
-                        Dog dog = (Dog)animal;
-                        lblInfoExtra.Text = "LastWalkDate";
-                        lblpInfoExtra.Text = Convert.ToString(dog.LastWalkDate);
-                    }
-                }
-            }  
-        }*/
 
         private void animalTypeComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -197,7 +167,7 @@ namespace Dierenasiel
                 {
                     lblpInfoName.Text = animal.Name;
                     lblpInfoDOB.Text = animal.DateOfBirth.ToString();
-                    lblpInfoChip.Text = animal.ChipRegistrationNumber;
+                    lblpInfoChip.Text = Convert.ToString(animal.ChipRegistrationNumber);
 
 
                     if (animal.IsReserved)
@@ -232,7 +202,7 @@ namespace Dierenasiel
 
         private void btnDeleteAnimal_Click(object sender, EventArgs e)
         {
-            string tempChip = "";
+            int tempChip = -1;
             foreach (Animal animal in administration.animals)
             {
                 if (cbAnimalNames.SelectedItem == animal.Name)

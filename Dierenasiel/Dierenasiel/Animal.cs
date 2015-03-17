@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Dierenasiel
 {
-    public abstract class Animal
+    public abstract class Animal : Prijsbaar
     {
         private const int chipRegistrationNumberMaxLength = 5;
 
@@ -13,9 +13,10 @@ namespace Dierenasiel
 
         public bool IsReserved { get; set; }
 
-        public string ChipRegistrationNumber { get; private set; }
+        public int ChipRegistrationNumber { get; private set; }
 
         public SimpleDate DateOfBirth { get; private set; }
+        public virtual decimal Price { get; set; }
 
 
         /// <summary>
@@ -28,20 +29,20 @@ namespace Dierenasiel
         /// becomes "12345"</param>
         /// <param name="dateOfBirth">The date of birth of the animal or null if unknown</param>
         /// <param name="name">The name of the animal or null if unknown</param>
-        public Animal(string name, string chipRegistrationNumber, SimpleDate dateOfBirth)
+        public Animal(string name, int chipRegistrationNumber, SimpleDate dateOfBirth)
         {
            
-            if (chipRegistrationNumber.Length < chipRegistrationNumberMaxLength)
+            if (Convert.ToString(chipRegistrationNumber).Length < chipRegistrationNumberMaxLength)
             {
-                ChipRegistrationNumber = chipRegistrationNumber.PadLeft(chipRegistrationNumberMaxLength, '0');
+                ChipRegistrationNumber = Convert.ToInt32(Convert.ToString(chipRegistrationNumber).PadLeft(chipRegistrationNumberMaxLength, '0'));
             }
-            else if (chipRegistrationNumber.Length > chipRegistrationNumberMaxLength)
+            else if (Convert.ToString(chipRegistrationNumber).Length > chipRegistrationNumberMaxLength)
             {
-                ChipRegistrationNumber = chipRegistrationNumber.Substring(0, chipRegistrationNumberMaxLength);
+                ChipRegistrationNumber = Convert.ToInt32(Convert.ToString(chipRegistrationNumber).Substring(0, chipRegistrationNumberMaxLength));
             }
             else
             {
-                ChipRegistrationNumber = chipRegistrationNumber;
+                ChipRegistrationNumber = Convert.ToInt32(chipRegistrationNumber);
             }
 
             if (name == null)
@@ -113,7 +114,8 @@ namespace Dierenasiel
             string info = ChipRegistrationNumber
                 + ", " + dateOfBirthString
                 + ", " + nameString
-                + ", " + IsReservedString;
+                + ", " + IsReservedString
+                +", " + Price;
 
             return info;
         }

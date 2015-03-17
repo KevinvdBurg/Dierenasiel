@@ -38,7 +38,6 @@
             this.dtpLastWalkDate = new System.Windows.Forms.DateTimePicker();
             this.tbName = new System.Windows.Forms.TextBox();
             this.dtpDOB = new System.Windows.Forms.DateTimePicker();
-            this.tbChip = new System.Windows.Forms.TextBox();
             this.lblName = new System.Windows.Forms.Label();
             this.lblDOB = new System.Windows.Forms.Label();
             this.lblChip = new System.Windows.Forms.Label();
@@ -56,8 +55,10 @@
             this.lbReserved = new System.Windows.Forms.ListBox();
             this.lbNotReserved = new System.Windows.Forms.ListBox();
             this.lblShowInfo = new System.Windows.Forms.Label();
+            this.nupChip = new System.Windows.Forms.NumericUpDown();
             this.gbCat.SuspendLayout();
             this.gbDog.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nupChip)).BeginInit();
             this.SuspendLayout();
             // 
             // createAnimalButton
@@ -150,14 +151,6 @@
             this.dtpDOB.Name = "dtpDOB";
             this.dtpDOB.Size = new System.Drawing.Size(200, 20);
             this.dtpDOB.TabIndex = 10;
-            // 
-            // tbChip
-            // 
-            this.tbChip.Location = new System.Drawing.Point(155, 127);
-            this.tbChip.MaxLength = 5;
-            this.tbChip.Name = "tbChip";
-            this.tbChip.Size = new System.Drawing.Size(200, 20);
-            this.tbChip.TabIndex = 11;
             // 
             // lblName
             // 
@@ -309,11 +302,19 @@
             this.lblShowInfo.TabIndex = 29;
             this.lblShowInfo.Text = "Show info:";
             // 
+            // nupChip
+            // 
+            this.nupChip.Location = new System.Drawing.Point(155, 130);
+            this.nupChip.Name = "nupChip";
+            this.nupChip.Size = new System.Drawing.Size(200, 20);
+            this.nupChip.TabIndex = 30;
+            // 
             // Dierenasiel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 553);
+            this.Controls.Add(this.nupChip);
             this.Controls.Add(this.lblShowInfo);
             this.Controls.Add(this.lbNotReserved);
             this.Controls.Add(this.lbReserved);
@@ -331,7 +332,6 @@
             this.Controls.Add(this.lblChip);
             this.Controls.Add(this.lblDOB);
             this.Controls.Add(this.lblName);
-            this.Controls.Add(this.tbChip);
             this.Controls.Add(this.dtpDOB);
             this.Controls.Add(this.tbName);
             this.Controls.Add(this.gbDog);
@@ -344,6 +344,7 @@
             this.gbCat.PerformLayout();
             this.gbDog.ResumeLayout(false);
             this.gbDog.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nupChip)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -357,7 +358,6 @@
         private System.Windows.Forms.GroupBox gbDog;
         private System.Windows.Forms.TextBox tbName;
         private System.Windows.Forms.DateTimePicker dtpDOB;
-        private System.Windows.Forms.TextBox tbChip;
         private System.Windows.Forms.TextBox txBadHabit;
         private System.Windows.Forms.DateTimePicker dtpLastWalkDate;
         private System.Windows.Forms.Label lblBadhabit;
@@ -379,6 +379,7 @@
         private System.Windows.Forms.ListBox lbReserved;
         private System.Windows.Forms.ListBox lbNotReserved;
         private System.Windows.Forms.Label lblShowInfo;
+        private System.Windows.Forms.NumericUpDown nupChip;
     }
 }
 

@@ -31,12 +31,12 @@ namespace Dierenasiel
         }
 
         //Search the Animal list by chipRegistrationNumber and removes it
-        public bool RemoveAnimal(string chipRegistrationNumber)
+        public bool RemoveAnimal(int chipRegistrationNumber)
         {
             Animal animalToRemove = null;
             foreach (Animal animal in animals)
             {
-                if (animal.ChipRegistrationNumber == chipRegistrationNumber)
+                if (animal.ChipRegistrationNumber == Convert.ToInt32(chipRegistrationNumber))
                 {
                     animalToRemove = animal;
                 }
@@ -50,7 +50,7 @@ namespace Dierenasiel
         {
             foreach (Animal animal in animals)
             {
-                if (animal.ChipRegistrationNumber == chipRegistrationNumber)
+                if (animal.ChipRegistrationNumber == Convert.ToInt32(chipRegistrationNumber))
                 {
                     return animal;
                 }
