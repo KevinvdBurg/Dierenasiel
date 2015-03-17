@@ -16,8 +16,8 @@ namespace Dierenasiel
         public int ChipRegistrationNumber { get; private set; }
 
         public SimpleDate DateOfBirth { get; private set; }
-        public virtual decimal Price { get; set; }
 
+        public virtual decimal Price { get; set; }
 
         /// <summary>
         /// Creates an animal.
@@ -79,6 +79,12 @@ namespace Dierenasiel
         ///                 Name will be "noname" if unknown or the actual name otherwise.
         ///                 IsReserved will be "reserved" if reserved or "not reserved" otherwise. 
         /// </returns>
+
+        public virtual void CalculatePrice()
+        {
+            //Calculate the Price
+        }
+        
         public virtual string ToString()
         {
             string dateOfBirthString;

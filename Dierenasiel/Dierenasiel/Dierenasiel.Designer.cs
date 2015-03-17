@@ -56,6 +56,8 @@
             this.lbNotReserved = new System.Windows.Forms.ListBox();
             this.lblShowInfo = new System.Windows.Forms.Label();
             this.nupChip = new System.Windows.Forms.NumericUpDown();
+            this.lblpInfoPrice = new System.Windows.Forms.Label();
+            this.lblInfoPrice = new System.Windows.Forms.Label();
             this.gbCat.SuspendLayout();
             this.gbDog.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nupChip)).BeginInit();
@@ -190,7 +192,7 @@
             // lblInfoChip
             // 
             this.lblInfoChip.AutoSize = true;
-            this.lblInfoChip.Location = new System.Drawing.Point(513, 143);
+            this.lblInfoChip.Location = new System.Drawing.Point(513, 130);
             this.lblInfoChip.Name = "lblInfoChip";
             this.lblInfoChip.Size = new System.Drawing.Size(42, 13);
             this.lblInfoChip.TabIndex = 19;
@@ -199,7 +201,7 @@
             // lblInfoDOB
             // 
             this.lblInfoDOB.AutoSize = true;
-            this.lblInfoDOB.Location = new System.Drawing.Point(513, 109);
+            this.lblInfoDOB.Location = new System.Drawing.Point(513, 96);
             this.lblInfoDOB.Name = "lblInfoDOB";
             this.lblInfoDOB.Size = new System.Drawing.Size(68, 13);
             this.lblInfoDOB.TabIndex = 17;
@@ -208,7 +210,7 @@
             // lblInfoName
             // 
             this.lblInfoName.AutoSize = true;
-            this.lblInfoName.Location = new System.Drawing.Point(513, 77);
+            this.lblInfoName.Location = new System.Drawing.Point(513, 64);
             this.lblInfoName.Name = "lblInfoName";
             this.lblInfoName.Size = new System.Drawing.Size(35, 13);
             this.lblInfoName.TabIndex = 16;
@@ -217,7 +219,7 @@
             // lblInfoExtra
             // 
             this.lblInfoExtra.AutoSize = true;
-            this.lblInfoExtra.Location = new System.Drawing.Point(513, 183);
+            this.lblInfoExtra.Location = new System.Drawing.Point(520, 192);
             this.lblInfoExtra.Name = "lblInfoExtra";
             this.lblInfoExtra.Size = new System.Drawing.Size(0, 13);
             this.lblInfoExtra.TabIndex = 20;
@@ -225,7 +227,7 @@
             // lblpInfoChip
             // 
             this.lblpInfoChip.AutoSize = true;
-            this.lblpInfoChip.Location = new System.Drawing.Point(664, 143);
+            this.lblpInfoChip.Location = new System.Drawing.Point(664, 130);
             this.lblpInfoChip.Name = "lblpInfoChip";
             this.lblpInfoChip.Size = new System.Drawing.Size(0, 13);
             this.lblpInfoChip.TabIndex = 23;
@@ -233,7 +235,7 @@
             // lblpInfoDOB
             // 
             this.lblpInfoDOB.AutoSize = true;
-            this.lblpInfoDOB.Location = new System.Drawing.Point(664, 109);
+            this.lblpInfoDOB.Location = new System.Drawing.Point(664, 96);
             this.lblpInfoDOB.Name = "lblpInfoDOB";
             this.lblpInfoDOB.Size = new System.Drawing.Size(0, 13);
             this.lblpInfoDOB.TabIndex = 22;
@@ -241,7 +243,7 @@
             // lblpInfoName
             // 
             this.lblpInfoName.AutoSize = true;
-            this.lblpInfoName.Location = new System.Drawing.Point(664, 77);
+            this.lblpInfoName.Location = new System.Drawing.Point(664, 64);
             this.lblpInfoName.Name = "lblpInfoName";
             this.lblpInfoName.Size = new System.Drawing.Size(0, 13);
             this.lblpInfoName.TabIndex = 21;
@@ -249,7 +251,7 @@
             // lblpInfoExtra
             // 
             this.lblpInfoExtra.AutoSize = true;
-            this.lblpInfoExtra.Location = new System.Drawing.Point(664, 183);
+            this.lblpInfoExtra.Location = new System.Drawing.Point(671, 192);
             this.lblpInfoExtra.Name = "lblpInfoExtra";
             this.lblpInfoExtra.Size = new System.Drawing.Size(0, 13);
             this.lblpInfoExtra.TabIndex = 24;
@@ -305,15 +307,39 @@
             // nupChip
             // 
             this.nupChip.Location = new System.Drawing.Point(155, 130);
+            this.nupChip.Maximum = new decimal(new int[] {
+            1215752191,
+            23,
+            0,
+            0});
             this.nupChip.Name = "nupChip";
             this.nupChip.Size = new System.Drawing.Size(200, 20);
             this.nupChip.TabIndex = 30;
+            // 
+            // lblpInfoPrice
+            // 
+            this.lblpInfoPrice.AutoSize = true;
+            this.lblpInfoPrice.Location = new System.Drawing.Point(664, 164);
+            this.lblpInfoPrice.Name = "lblpInfoPrice";
+            this.lblpInfoPrice.Size = new System.Drawing.Size(0, 13);
+            this.lblpInfoPrice.TabIndex = 32;
+            // 
+            // lblInfoPrice
+            // 
+            this.lblInfoPrice.AutoSize = true;
+            this.lblInfoPrice.Location = new System.Drawing.Point(513, 164);
+            this.lblInfoPrice.Name = "lblInfoPrice";
+            this.lblInfoPrice.Size = new System.Drawing.Size(31, 13);
+            this.lblInfoPrice.TabIndex = 31;
+            this.lblInfoPrice.Text = "Price";
             // 
             // Dierenasiel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 553);
+            this.Controls.Add(this.lblpInfoPrice);
+            this.Controls.Add(this.lblInfoPrice);
             this.Controls.Add(this.nupChip);
             this.Controls.Add(this.lblShowInfo);
             this.Controls.Add(this.lbNotReserved);
@@ -380,6 +406,8 @@
         private System.Windows.Forms.ListBox lbNotReserved;
         private System.Windows.Forms.Label lblShowInfo;
         private System.Windows.Forms.NumericUpDown nupChip;
+        private System.Windows.Forms.Label lblpInfoPrice;
+        private System.Windows.Forms.Label lblInfoPrice;
     }
 }
 

@@ -21,29 +21,10 @@ namespace Dierenasiel
         /// <param name="dateOfBirth">The date of birth of the animal or null if unknown</param>
         /// <param name="name">The name of the animal or null if unknown</param>
         /// <param name="lastWalkDate">The date of the last walk with the dog or null if unknown.</param>
-        public override decimal Price
-        {
-            get
-            {
-                    return base.Price;
-            }
-            set
-            {
-                if (ChipRegistrationNumber < 50000)
-                {
-                    base.Price = 200;
-                }
-                else
-                {
-                    {
-                        base.Price = 350;
-                    }
-                }
-            }
-        }
         public Dog(string name, int chipRegistrationNumber, SimpleDate dateOfBirth, SimpleDate lastWalkDate) : base(name, chipRegistrationNumber, dateOfBirth)
         {
             LastWalkDate = lastWalkDate;
+            CalculatePrice();
         }
 
         /// <summary>
@@ -60,6 +41,21 @@ namespace Dierenasiel
         ///                 IsReserved will be "reserved" if reserved or "not reserved" otherwise.
         ///                 LastWalkDate will be "00-00-0000" if unknown or the actual date otherwise.
         /// </returns>
+        /// 
+
+        public override void CalculatePrice()
+        {
+            if (ChipRegistrationNumber < 50000)
+                {
+                    base.Price = 200;
+                }
+            else
+            {
+                {
+                    base.Price = 350;
+                }
+            }
+        }
         public override string ToString()
         {
             return base.ToString() + "," + LastWalkDate;

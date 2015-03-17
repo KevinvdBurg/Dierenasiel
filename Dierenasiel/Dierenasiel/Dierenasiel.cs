@@ -50,18 +50,19 @@ namespace Dierenasiel
             if (result != null)
             {
                 MessageBox.Show("chipnr is al in gebruik");
+                
             }
 
             if (animalTypeComboBox.SelectedItem.Equals(Animals.Cat))
             {
                 //Create New Cat
-                Cat nyanCat = new Cat(tbName.Text, Convert.ToInt32(nupChip.Value), new SimpleDate(dtpDOB.Value.Day, dtpDOB.Value.Month, dtpDOB.Value.Year), txBadHabit.Text);
+                Animal nyanCat = new Cat(tbName.Text, Convert.ToInt32(nupChip.Value), new SimpleDate(dtpDOB.Value.Day, dtpDOB.Value.Month, dtpDOB.Value.Year), txBadHabit.Text);
                 administration.Add(nyanCat);
             }
             else if (animalTypeComboBox.SelectedItem.Equals(Animals.Dog))
             {
                 //Create New Dog
-                Dog dogeDog = new Dog(tbName.Text, Convert.ToInt32(nupChip.Value), new SimpleDate(dtpDOB.Value.Day, dtpDOB.Value.Month, dtpDOB.Value.Year), new SimpleDate(dtpLastWalkDate.Value.Day, dtpLastWalkDate.Value.Month, dtpLastWalkDate.Value.Year));
+                Animal dogeDog = new Dog(tbName.Text, Convert.ToInt32(nupChip.Value), new SimpleDate(dtpDOB.Value.Day, dtpDOB.Value.Month, dtpDOB.Value.Year), new SimpleDate(dtpLastWalkDate.Value.Day, dtpLastWalkDate.Value.Month, dtpLastWalkDate.Value.Year));
                 administration.Add(dogeDog);
             }
             else
@@ -130,7 +131,9 @@ namespace Dierenasiel
             lblpInfoChip.Text = "";
             lblpInfoDOB.Text = "";
             lblpInfoExtra.Text = "";
+            lblpInfoPrice.Text = "";
             lblInfoExtra.Text = "";
+            
         }
 
         //Checkbox changed check
@@ -168,7 +171,7 @@ namespace Dierenasiel
                     lblpInfoName.Text = animal.Name;
                     lblpInfoDOB.Text = animal.DateOfBirth.ToString();
                     lblpInfoChip.Text = Convert.ToString(animal.ChipRegistrationNumber);
-
+                    lblpInfoPrice.Text = Convert.ToString(animal.Price);
 
                     if (animal.IsReserved)
                     {
