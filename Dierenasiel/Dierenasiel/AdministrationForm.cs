@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -44,13 +45,19 @@ namespace Dierenasiel
         /// </summary>
         private void createAnimalButton_Click(object sender, EventArgs e)
         {
-            Animal result =
-                administration.animals.Find(Animal => Animal.ChipRegistrationNumber == Convert.ToInt32(nupChip.Value));
+            string name = tbName.Text;
+            Animal chipAnimal = administration.animals.Find(Animal => Animal.ChipRegistrationNumber == Convert.ToInt32(nupChip.Value));
 
-            if (result != null)
+            if (chipAnimal != null)
             {
                 MessageBox.Show("chipnr is al in gebruik");
-                
+                return;
+            }
+
+            if (String.IsNullOrEmpty(Regex.Replace(name, @"\s+", "")))
+            {
+                MessageBox.Show("U heeft geen naam ingevuld");
+                return;
             }
 
             if (animalTypeComboBox.SelectedItem.Equals(Animals.Cat))
