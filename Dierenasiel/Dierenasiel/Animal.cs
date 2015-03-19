@@ -7,10 +7,20 @@ namespace Dierenasiel
 {
     public abstract class Animal : Prijsbaar
     {
+        //FIELDS
+        /// <summary>
+        /// ChipRegistrationNumberMaxLength is the maximum allowed length of the chipregistrationnumber
+        /// </summary>
         private const int chipRegistrationNumberMaxLength = 5;
 
+        /// <summary>
+        /// Name is the name of the Animal
+        /// </summary>
         public string Name { get; private set; }
 
+        /// <summary>
+        /// IsReserved is the reservationstatus of the animal, being true while the animal is reservated, being false while the animal isn't reservated
+        /// </summary>
         public bool IsReserved { get; set; }
 
         public int ChipRegistrationNumber { get; private set; }
