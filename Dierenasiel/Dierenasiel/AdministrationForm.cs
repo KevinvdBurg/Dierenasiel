@@ -13,17 +13,33 @@ namespace Dierenasiel
 {
     public partial class AdministrationForm : Form
     {
+        //FIELDS
+        /// <summary>
+        /// The administration field is an instance of the class Administration.
+        /// </summary>
         private Administration administration;
-        private bool checkboxcheck = false;
+        /// <summary>
+        /// The checkboxcheck is an bool that resembles wether or not an animal has been set to reserved.
+        /// </summary>
+        private bool checkboxcheck;
+        /// <summary>
+        /// The Animals enum is an enum field that includes Cat and Dog.
+        /// </summary>
         enum Animals
         {
             Cat,
             Dog
         }
 
+        //CONSTRUCTORS
+        /// <summary>
+        /// The constructor sets the initial values of the fields, creates a certain amount of premade instances of the Dog and Cat classes, and refreshes the animals list so these new instances will show up on the GUI.
+        /// </summary>
         public AdministrationForm()
         {
             InitializeComponent();
+
+            checkboxcheck = false;
             administration = new Administration();
             animalTypeComboBox.Items.Add(Animals.Cat);
             animalTypeComboBox.Items.Add(Animals.Dog);
@@ -38,6 +54,7 @@ namespace Dierenasiel
             RefreshAnimals(false);
         }
 
+        //METHODS
         /// <summary>
         /// Create an Animal object and store it in the administration.
         /// If "Dog" is selected in the animalTypeCombobox then a Dog object should be created.
@@ -79,7 +96,6 @@ namespace Dierenasiel
             }
             RefreshAnimals(false);
         }
-
         private void animalTypeComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             //Disables the LastWalkdate if the Animal type is a Cat
