@@ -16,7 +16,7 @@ namespace Dierenasiel
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Dierenasiel());
+            Application.Run(new AdministrationForm());
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace Dierenasiel
 {
-    partial class Dierenasiel
+    partial class AdministrationForm
     {
         /// <summary>
         /// Required designer variable.

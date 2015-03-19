@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace Dierenasiel
 {
-    public partial class Dierenasiel : Form
+    public partial class AdministrationForm : Form
     {
         private Administration administration;
         private bool checkboxcheck = false;
@@ -20,7 +20,7 @@ namespace Dierenasiel
             Dog
         }
 
-        public Dierenasiel()
+        public AdministrationForm()
         {
             InitializeComponent();
             administration = new Administration();
