@@ -58,6 +58,8 @@
             this.nupChip = new System.Windows.Forms.NumericUpDown();
             this.lblpInfoPrice = new System.Windows.Forms.Label();
             this.lblInfoPrice = new System.Windows.Forms.Label();
+            this.lblGender = new System.Windows.Forms.Label();
+            this.cbGender = new System.Windows.Forms.ComboBox();
             this.gbCat.SuspendLayout();
             this.gbDog.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nupChip)).BeginInit();
@@ -87,7 +89,7 @@
             // 
             this.gbCat.Controls.Add(this.lblBadhabit);
             this.gbCat.Controls.Add(this.txBadHabit);
-            this.gbCat.Location = new System.Drawing.Point(12, 164);
+            this.gbCat.Location = new System.Drawing.Point(12, 190);
             this.gbCat.Name = "gbCat";
             this.gbCat.Size = new System.Drawing.Size(367, 56);
             this.gbCat.TabIndex = 6;
@@ -116,7 +118,7 @@
             // 
             this.gbDog.Controls.Add(this.lblLastWalkDate);
             this.gbDog.Controls.Add(this.dtpLastWalkDate);
-            this.gbDog.Location = new System.Drawing.Point(12, 236);
+            this.gbDog.Location = new System.Drawing.Point(12, 252);
             this.gbDog.Name = "gbDog";
             this.gbDog.Size = new System.Drawing.Size(367, 66);
             this.gbDog.TabIndex = 7;
@@ -175,7 +177,7 @@
             // lblChip
             // 
             this.lblChip.AutoSize = true;
-            this.lblChip.Location = new System.Drawing.Point(25, 130);
+            this.lblChip.Location = new System.Drawing.Point(28, 132);
             this.lblChip.Name = "lblChip";
             this.lblChip.Size = new System.Drawing.Size(42, 13);
             this.lblChip.TabIndex = 14;
@@ -333,11 +335,31 @@
             this.lblInfoPrice.TabIndex = 31;
             this.lblInfoPrice.Text = "Price";
             // 
-            // Dierenasiel
+            // lblGender
+            // 
+            this.lblGender.AutoSize = true;
+            this.lblGender.Location = new System.Drawing.Point(28, 159);
+            this.lblGender.Name = "lblGender";
+            this.lblGender.Size = new System.Drawing.Size(42, 13);
+            this.lblGender.TabIndex = 33;
+            this.lblGender.Text = "Gender";
+            // 
+            // cbGender
+            // 
+            this.cbGender.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbGender.FormattingEnabled = true;
+            this.cbGender.Location = new System.Drawing.Point(155, 161);
+            this.cbGender.Name = "cbGender";
+            this.cbGender.Size = new System.Drawing.Size(200, 21);
+            this.cbGender.TabIndex = 34;
+            // 
+            // AdministrationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 553);
+            this.Controls.Add(this.cbGender);
+            this.Controls.Add(this.lblGender);
             this.Controls.Add(this.lblpInfoPrice);
             this.Controls.Add(this.lblInfoPrice);
             this.Controls.Add(this.nupChip);
@@ -364,7 +386,7 @@
             this.Controls.Add(this.gbCat);
             this.Controls.Add(this.createAnimalButton);
             this.Controls.Add(this.animalTypeComboBox);
-            this.Name = "Dierenasiel";
+            this.Name = "AdministrationForm";
             this.Text = "Admin ";
             this.gbCat.ResumeLayout(false);
             this.gbCat.PerformLayout();
@@ -408,6 +430,8 @@
         private System.Windows.Forms.NumericUpDown nupChip;
         private System.Windows.Forms.Label lblpInfoPrice;
         private System.Windows.Forms.Label lblInfoPrice;
+        private System.Windows.Forms.Label lblGender;
+        private System.Windows.Forms.ComboBox cbGender;
     }
 }
 

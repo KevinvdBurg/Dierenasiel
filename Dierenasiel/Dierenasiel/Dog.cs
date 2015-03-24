@@ -21,7 +21,7 @@ namespace Dierenasiel
         /// <param name="dateOfBirth">The date of birth of the animal or null if unknown</param>
         /// <param name="name">The name of the animal or null if unknown</param>
         /// <param name="lastWalkDate">The date of the last walk with the dog or null if unknown.</param>
-        public Dog(string name, int chipRegistrationNumber, SimpleDate dateOfBirth, SimpleDate lastWalkDate) : base(name, chipRegistrationNumber, dateOfBirth)
+        public Dog(string name, int chipRegistrationNumber, SimpleDate dateOfBirth, Gender gender, SimpleDate lastWalkDate) : base(name, chipRegistrationNumber, dateOfBirth, gender)
         {
             LastWalkDate = lastWalkDate;
             CalculatePrice();

@@ -15,7 +15,7 @@ namespace Dierenasiel
     {
         //FIELDS
         /// <summary>
-        /// The administration field is an instance of the class Administration.
+        /// The administration Male is an instance of the class Administration.
         /// </summary>
         private Administration administration;
         /// <summary>
@@ -23,7 +23,7 @@ namespace Dierenasiel
         /// </summary>
         private bool checkboxcheck;
         /// <summary>
-        /// The Animals enum is an enum field that includes Cat and Dog.
+        /// The Animals enum is an enum Male that includes Cat and Dog.
         /// </summary>
         enum Animals
         {
@@ -43,12 +43,15 @@ namespace Dierenasiel
             administration = new Administration();
             animalTypeComboBox.Items.Add(Animals.Cat);
             animalTypeComboBox.Items.Add(Animals.Dog);
+            cbGender.Items.Add(Gender.Female);
+            cbGender.Items.Add(Gender.Male);
+            cbGender.SelectedIndex = 0;
             animalTypeComboBox.SelectedIndex = 0;
 
             //Default Cats and Dogs
-            administration.Add(new Dog("Ivan", 3212, new SimpleDate(12, 3, 2014), new SimpleDate(12, 3, 2015)));
-            administration.Add(new Dog("Milton", 45231, new SimpleDate(6, 12, 2010), new SimpleDate(11, 3, 2015)));
-            administration.Add(new Cat("Kevin", 23452, new SimpleDate(12, 3, 405), "Mummified"));
+            administration.Add(new Dog("Ivan", 3212, new SimpleDate(12, 3, 2014), Gender.Female, new SimpleDate(12, 3, 2015)));
+            administration.Add(new Dog("Milton", 45231, new SimpleDate(6, 12, 2010), Gender.Male, new SimpleDate(11, 3, 2015)));
+            administration.Add(new Cat("Kevin", 23452, new SimpleDate(12, 3, 405), Gender.Male, "Mummified"));
 
             //Ini Refresh
             RefreshAnimals(false);
@@ -80,13 +83,13 @@ namespace Dierenasiel
             if (animalTypeComboBox.SelectedItem.Equals(Animals.Cat))
             {
                 //Create New Cat
-                Animal nyanCat = new Cat(tbName.Text, Convert.ToInt32(nupChip.Value), new SimpleDate(dtpDOB.Value.Day, dtpDOB.Value.Month, dtpDOB.Value.Year), txBadHabit.Text);
+                Animal nyanCat = new Cat(tbName.Text, Convert.ToInt32(nupChip.Value), new SimpleDate(dtpDOB.Value.Day, dtpDOB.Value.Month, dtpDOB.Value.Year), (Gender)Enum.Parse(typeof(Gender), cbGender.SelectedText), txBadHabit.Text);
                 administration.Add(nyanCat);
             }
             else if (animalTypeComboBox.SelectedItem.Equals(Animals.Dog))
             {
                 //Create New Dog
-                Animal dogeDog = new Dog(tbName.Text, Convert.ToInt32(nupChip.Value), new SimpleDate(dtpDOB.Value.Day, dtpDOB.Value.Month, dtpDOB.Value.Year), new SimpleDate(dtpLastWalkDate.Value.Day, dtpLastWalkDate.Value.Month, dtpLastWalkDate.Value.Year));
+                Animal dogeDog = new Dog(tbName.Text, Convert.ToInt32(nupChip.Value), new SimpleDate(dtpDOB.Value.Day, dtpDOB.Value.Month, dtpDOB.Value.Year), (Gender)Enum.Parse(typeof(Gender), cbGender.SelectedText), new SimpleDate(dtpLastWalkDate.Value.Day, dtpLastWalkDate.Value.Month, dtpLastWalkDate.Value.Year));
                 administration.Add(dogeDog);
             }
             else

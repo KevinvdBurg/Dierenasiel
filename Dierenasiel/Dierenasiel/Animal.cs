@@ -29,6 +29,8 @@ namespace Dierenasiel
 
         public virtual decimal Price { get; set; }
 
+        public Gender Gender { get; set; }
+
         /// <summary>
         /// Creates an animal.
         /// </summary>
@@ -39,9 +41,9 @@ namespace Dierenasiel
         /// becomes "12345"</param>
         /// <param name="dateOfBirth">The date of birth of the animal or null if unknown</param>
         /// <param name="name">The name of the animal or null if unknown</param>
-        public Animal(string name, int chipRegistrationNumber, SimpleDate dateOfBirth)
+        public Animal(string name, int chipRegistrationNumber, SimpleDate dateOfBirth, Gender gender)
         {
-           
+
             if (Convert.ToString(chipRegistrationNumber).Length < chipRegistrationNumberMaxLength)
             {
                 ChipRegistrationNumber = Convert.ToInt32(Convert.ToString(chipRegistrationNumber).PadLeft(chipRegistrationNumberMaxLength, '0'));
@@ -72,7 +74,7 @@ namespace Dierenasiel
             {
                 DateOfBirth = dateOfBirth;     
             }
-            
+            Gender = gender;
             IsReserved = false; 
         }
 
@@ -131,6 +133,7 @@ namespace Dierenasiel
                 + ", " + dateOfBirthString
                 + ", " + nameString
                 + ", " + IsReservedString
+                + ", " + Convert.ToString(Gender)
                 +", " + Price;
 
             return info;

@@ -25,7 +25,7 @@ namespace Dierenasiel
         /// <param name="name">The name of the animal or null if unknown</param>
         /// <param name="badHabits">The nasty habbits of the cat (e.g. "scratches the couch")
         ///                           or null if none.</param>
-        public Cat(string name, int chipRegistrationNumber, SimpleDate dateOfBirth, string badHabits) : base(name, chipRegistrationNumber, dateOfBirth)
+        public Cat(string name, int chipRegistrationNumber, SimpleDate dateOfBirth, Gender gender, string badHabits) : base(name, chipRegistrationNumber, dateOfBirth, gender)
         {
             BadHabits = badHabits;
             CalculatePrice();

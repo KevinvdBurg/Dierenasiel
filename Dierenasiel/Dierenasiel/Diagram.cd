@@ -13,7 +13,7 @@
   <Class Name="Dierenasiel.Animal">
     <Position X="3.25" Y="2" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAACAAAAQAEAAAEAAAAAAQAAAASAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAACAAAAQAEAACEAAAAAAQAAAASAAIAAAAAAAAAAAA=</HashCode>
       <FileName>Animal.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -24,7 +24,7 @@
   <Class Name="Dierenasiel.Cat">
     <Position X="1.5" Y="6" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAACAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAACAAAAAAAAAEAAAAAAAAAAAAAAIAAAAAAAAAAAA=</HashCode>
       <FileName>Cat.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -36,7 +36,7 @@
       </MemberNameLabel>
     </AssociationLine>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAEAAAQAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAEAAAQAAAAAAAAAAIAAAAAAAAAAAA=</HashCode>
       <FileName>Dog.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -57,5 +57,12 @@
       <FileName>Prijsbaar.cs</FileName>
     </TypeIdentifier>
   </Interface>
+  <Enum Name="Dierenasiel.Gender">
+    <Position X="3.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAABA=</HashCode>
+      <FileName>Gender.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>
