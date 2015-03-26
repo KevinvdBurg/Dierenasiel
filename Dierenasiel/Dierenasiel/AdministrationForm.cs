@@ -25,11 +25,6 @@ namespace Dierenasiel
         /// <summary>
         /// The Animals enum is an enum Male that includes Cat and Dog.
         /// </summary>
-        enum Animals
-        {
-            Cat,
-            Dog
-        }
 
         //CONSTRUCTORS
         /// <summary>
@@ -197,7 +192,8 @@ namespace Dierenasiel
                     lblpInfoName.Text = animal.Name;
                     lblpInfoDOB.Text = animal.DateOfBirth.ToString();
                     lblpInfoChip.Text = Convert.ToString(animal.ChipRegistrationNumber);
-                    lblpInfoPrice.Text = Convert.ToString(animal.Price);
+
+                    
 
                     if (animal.IsReserved)
                     {
@@ -217,12 +213,19 @@ namespace Dierenasiel
                         Cat cat = (Cat)animal;
                         lblInfoExtra.Text = "Bad Habit";
                         lblpInfoExtra.Text = cat.BadHabits;
+                        lblpInfoPrice.Text = Convert.ToString(cat.Price);
                     }
-                    else if (animal.GetType() == typeof(Dog))
+                    else if (animal.GetType() == typeof (Dog))
                     {
-                        Dog dog = (Dog)animal;
+                        Dog dog = (Dog) animal;
                         lblInfoExtra.Text = "LastWalkDate";
                         lblpInfoExtra.Text = Convert.ToString(dog.LastWalkDate);
+                        lblpInfoPrice.Text = Convert.ToString(dog.Price);
+                    }
+                    else
+                    {
+                        lblInfoExtra.Text = "";
+                        lblpInfoExtra.Text = "";
                     }
                 }
             }

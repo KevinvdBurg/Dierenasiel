@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Dierenasiel
 {
-    public abstract class Animal : Prijsbaar
+    public abstract class Animal
     {
         //FIELDS
         /// <summary>
@@ -26,8 +26,6 @@ namespace Dierenasiel
         public int ChipRegistrationNumber { get; private set; }
 
         public SimpleDate DateOfBirth { get; private set; }
-
-        public virtual decimal Price { get; set; }
 
         public Gender Gender { get; set; }
 
@@ -91,12 +89,7 @@ namespace Dierenasiel
         ///                 Name will be "noname" if unknown or the actual name otherwise.
         ///                 IsReserved will be "reserved" if reserved or "not reserved" otherwise. 
         /// </returns>
-
-        public virtual void CalculatePrice()
-        {
-            //Calculate the Price
-        }
-        
+        /// 
         public virtual string ToString()
         {
             string dateOfBirthString;
@@ -130,11 +123,10 @@ namespace Dierenasiel
             }
 
             string info = ChipRegistrationNumber
-                + ", " + dateOfBirthString
-                + ", " + nameString
-                + ", " + IsReservedString
-                + ", " + Convert.ToString(Gender)
-                +", " + Price;
+                          + ", " + dateOfBirthString
+                          + ", " + nameString
+                          + ", " + IsReservedString
+                          + ", " + Convert.ToString(Gender);
 
             return info;
         }

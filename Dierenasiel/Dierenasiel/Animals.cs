@@ -5,11 +5,9 @@ using System.Text;
 
 namespace Dierenasiel
 {
-    public interface Prijsbaar
+    enum Animals
     {
-        decimal Price
-        {
-            get;
-        }
+        Cat,
+        Dog
     }
 }

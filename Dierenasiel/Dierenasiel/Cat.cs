@@ -5,13 +5,28 @@ using System.Text;
 
 namespace Dierenasiel
 {
-    public class Cat : Animal
+    public class Cat : Animal, Prijsbaar
     {
         /// <summary>
         /// Description of the bad habits that the cat shows (e.g. "Scratches the couch").
         /// or null if the cat shows no bad habits.
         /// </summary>
         public string BadHabits { get; private set; }
+
+        public decimal Price
+        {
+            get
+            {
+                if (60 - BadHabits.Length < 20)
+                {
+                    return 20;
+                }
+                else
+                {
+                    return 60 - BadHabits.Length;
+                }
+            }
+        }
 
         /// <summary>
         /// Creates a cat.
@@ -28,7 +43,6 @@ namespace Dierenasiel
         public Cat(string name, int chipRegistrationNumber, SimpleDate dateOfBirth, Gender gender, string badHabits) : base(name, chipRegistrationNumber, dateOfBirth, gender)
         {
             BadHabits = badHabits;
-            CalculatePrice();
         }
 
 
@@ -47,21 +61,10 @@ namespace Dierenasiel
         ///                 BadHabits will be "none" if none present or a description of the actual habits otherwise.
         /// </returns>
 
-        public override void CalculatePrice()
-        {
-            if (60 - BadHabits.Length < 20)
-            {
-                base.Price = 20;
-            }
-            else
-            {
-                base.Price = 60 - BadHabits.Length;
-            }
-        }
         
         public override string ToString()
         {
-            return base.ToString() + "," + BadHabits;
+            return "Cat " + base.ToString() + "," + Price +"," + BadHabits;
         }
     }
 }

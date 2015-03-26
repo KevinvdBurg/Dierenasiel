@@ -5,10 +5,24 @@ using System.Text;
 
 namespace Dierenasiel
 {
-    public class Dog : Animal
+    public class Dog : Animal, Prijsbaar
     {
         public SimpleDate LastWalkDate { get; private set; }
 
+        public decimal Price
+        {
+            get
+            {
+                if (ChipRegistrationNumber < 50000)
+                {
+                     return 200;
+                }
+                else
+                {
+                    return 350;
+                }
+            }
+        }
 
         /// <summary>
         /// Creates a dog.
@@ -24,7 +38,6 @@ namespace Dierenasiel
         public Dog(string name, int chipRegistrationNumber, SimpleDate dateOfBirth, Gender gender, SimpleDate lastWalkDate) : base(name, chipRegistrationNumber, dateOfBirth, gender)
         {
             LastWalkDate = lastWalkDate;
-            CalculatePrice();
         }
 
         /// <summary>
@@ -43,22 +56,9 @@ namespace Dierenasiel
         /// </returns>
         /// 
 
-        public override void CalculatePrice()
-        {
-            if (ChipRegistrationNumber < 50000)
-                {
-                    base.Price = 200;
-                }
-            else
-            {
-                {
-                    base.Price = 350;
-                }
-            }
-        }
         public override string ToString()
         {
-            return base.ToString() + "," + LastWalkDate;
+            return "Dog: " + base.ToString() +"," + Price + "," + LastWalkDate;
         }
     }
 }

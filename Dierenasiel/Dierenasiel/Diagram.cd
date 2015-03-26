@@ -13,20 +13,20 @@
   <Class Name="Dierenasiel.Animal">
     <Position X="3.25" Y="2" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAACAAAAQAEAACEAAAAAAQAAAASAAIAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAACAAAAAAEAACEAAAAAAQAAAASAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Animal.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
       <Property Name="DateOfBirth" />
     </ShowAsAssociation>
-    <Lollipop Position="0.2" />
   </Class>
   <Class Name="Dierenasiel.Cat">
     <Position X="1.5" Y="6" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAACAAAAAAAAAEAAAAAAAAAAAAAAIAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAACAAAQAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Cat.cs</FileName>
     </TypeIdentifier>
+    <Lollipop Position="0.2" />
   </Class>
   <Class Name="Dierenasiel.Dog">
     <Position X="4" Y="6" Width="1.5" />
@@ -36,12 +36,13 @@
       </MemberNameLabel>
     </AssociationLine>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAEAAAQAAAAAAAAAAIAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAQAAAAAEAAAQAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Dog.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
       <Property Name="LastWalkDate" />
     </ShowAsAssociation>
+    <Lollipop Position="0.2" />
   </Class>
   <Class Name="Dierenasiel.SimpleDate">
     <Position X="6.5" Y="2" Width="1.5" />
@@ -51,17 +52,24 @@
     </TypeIdentifier>
   </Class>
   <Interface Name="Dierenasiel.Prijsbaar">
-    <Position X="5.75" Y="0.5" Width="1.5" />
+    <Position X="9" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Prijsbaar.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Enum Name="Dierenasiel.Gender">
-    <Position X="3.25" Y="0.5" Width="1.5" />
+    <Position X="9" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAABA=</HashCode>
       <FileName>Gender.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Dierenasiel.Animals">
+    <Position X="9" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAQAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Animals.cs</FileName>
     </TypeIdentifier>
   </Enum>
   <Font Name="Segoe UI" Size="9" />
