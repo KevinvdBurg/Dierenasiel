@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Dierenasiel
 {
-    public abstract class Animal
+    public abstract class Animal : IComparable<Animal>
     {
         //FIELDS
         /// <summary>
@@ -76,6 +76,17 @@ namespace Dierenasiel
             IsReserved = false; 
         }
 
+        public int CompareTo(Animal other)
+        {
+            if (this.ChipRegistrationNumber > other.ChipRegistrationNumber)
+                return 1;
+            if (this.ChipRegistrationNumber < other.ChipRegistrationNumber)
+                return -1;
+            else
+                return 0;
+            //return this.ChipRegistrationNumber.CompareTo(other.ChipRegistrationNumber);   
+        }
+
         /// <summary>
         /// Retrieve information about this animal
         /// 
@@ -127,7 +138,6 @@ namespace Dierenasiel
                           + ", " + nameString
                           + ", " + IsReservedString
                           + ", " + Convert.ToString(Gender);
-
             return info;
         }
     }

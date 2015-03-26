@@ -11,6 +11,7 @@ using System.Windows.Forms;
 
 namespace Dierenasiel
 {
+
     public partial class AdministrationForm : Form
     {
         //FIELDS
@@ -22,9 +23,8 @@ namespace Dierenasiel
         /// The checkboxcheck is an bool that resembles wether or not an animal has been set to reserved.
         /// </summary>
         private bool checkboxcheck;
-        /// <summary>
-        /// The Animals enum is an enum Male that includes Cat and Dog.
-        /// </summary>
+        private bool autoNameSort;
+        private bool autoChipnrSort;
 
         //CONSTRUCTORS
         /// <summary>
@@ -36,10 +36,16 @@ namespace Dierenasiel
 
             checkboxcheck = false;
             administration = new Administration();
+
+
             animalTypeComboBox.Items.Add(Animals.Cat);
             animalTypeComboBox.Items.Add(Animals.Dog);
             cbGender.Items.Add(Gender.Female);
             cbGender.Items.Add(Gender.Male);
+
+            autoChipnrSort = false;
+            autoNameSort = true;
+
             cbGender.SelectedIndex = 0;
             animalTypeComboBox.SelectedIndex = 0;
 
@@ -47,6 +53,7 @@ namespace Dierenasiel
             administration.Add(new Dog("Ivan", 3212, new SimpleDate(12, 3, 2014), Gender.Female, new SimpleDate(12, 3, 2015)));
             administration.Add(new Dog("Milton", 45231, new SimpleDate(6, 12, 2010), Gender.Male, new SimpleDate(11, 3, 2015)));
             administration.Add(new Cat("Kevin", 23452, new SimpleDate(12, 3, 405), Gender.Male, "Mummified"));
+            administration.Add(new Cat("Abba", 99999, new SimpleDate(12, 3, 405), Gender.Female, "Loves Pools"));
 
             //Ini Refresh
             RefreshAnimals(false);
@@ -78,13 +85,13 @@ namespace Dierenasiel
             if (animalTypeComboBox.SelectedItem.Equals(Animals.Cat))
             {
                 //Create New Cat
-                Animal nyanCat = new Cat(tbName.Text, Convert.ToInt32(nupChip.Value), new SimpleDate(dtpDOB.Value.Day, dtpDOB.Value.Month, dtpDOB.Value.Year), (Gender)Enum.Parse(typeof(Gender), cbGender.SelectedText), txBadHabit.Text);
+                Animal nyanCat = new Cat(tbName.Text, Convert.ToInt32(nupChip.Value), new SimpleDate(dtpDOB.Value.Day, dtpDOB.Value.Month, dtpDOB.Value.Year), (Gender)Enum.Parse(typeof(Gender), cbGender.SelectedItem.ToString()), txBadHabit.Text);
                 administration.Add(nyanCat);
             }
             else if (animalTypeComboBox.SelectedItem.Equals(Animals.Dog))
             {
                 //Create New Dog
-                Animal dogeDog = new Dog(tbName.Text, Convert.ToInt32(nupChip.Value), new SimpleDate(dtpDOB.Value.Day, dtpDOB.Value.Month, dtpDOB.Value.Year), (Gender)Enum.Parse(typeof(Gender), cbGender.SelectedText), new SimpleDate(dtpLastWalkDate.Value.Day, dtpLastWalkDate.Value.Month, dtpLastWalkDate.Value.Year));
+                Animal dogeDog = new Dog(tbName.Text, Convert.ToInt32(nupChip.Value), new SimpleDate(dtpDOB.Value.Day, dtpDOB.Value.Month, dtpDOB.Value.Year), (Gender)Enum.Parse(typeof(Gender), cbGender.SelectedItem.ToString()), new SimpleDate(dtpLastWalkDate.Value.Day, dtpLastWalkDate.Value.Month, dtpLastWalkDate.Value.Year));
                 administration.Add(dogeDog);
             }
             else
@@ -119,16 +126,27 @@ namespace Dierenasiel
         //Refresh the combobox and the lists
         private void RefreshAnimals(bool hasChanged)
         {
-            
+
             lbReserved.Items.Clear();
             lbNotReserved.Items.Clear();
             if (!hasChanged)
             {
                 cbAnimalNames.Items.Clear();
             }
-            
+
+            if (autoChipnrSort)
+            {
+                administration.animals.Sort();
+            }
+
+            if (autoNameSort)
+            {
+                administration.animals.Sort(new AnimalNameSorter());
+            }
+
             foreach (Animal animal in administration.animals)
             {
+                
                 if (!hasChanged)
                 {
                     cbAnimalNames.Items.Add(animal.Name);
@@ -154,7 +172,8 @@ namespace Dierenasiel
             lblpInfoExtra.Text = "";
             lblpInfoPrice.Text = "";
             lblInfoExtra.Text = "";
-            
+            lblpInfoGender.Text = "";
+
         }
 
         //Checkbox changed check
@@ -192,8 +211,7 @@ namespace Dierenasiel
                     lblpInfoName.Text = animal.Name;
                     lblpInfoDOB.Text = animal.DateOfBirth.ToString();
                     lblpInfoChip.Text = Convert.ToString(animal.ChipRegistrationNumber);
-
-                    
+                    lblpInfoGender.Text = animal.Gender.ToString();
 
                     if (animal.IsReserved)
                     {
@@ -208,7 +226,28 @@ namespace Dierenasiel
                         checkboxcheck = false;
                     }
 
-                    if (animal.GetType() == typeof(Cat))
+
+                    //"Is" & "As" oefening
+                    Cat catTest = animal as Cat;
+                    Dog dogTest;
+
+                    if (catTest != null)
+                    {
+                        lblInfoExtra.Text = "Bad Habit";
+                        lblpInfoExtra.Text = catTest.BadHabits;
+                        lblpInfoPrice.Text = Convert.ToString(catTest.Price);
+                    }
+
+                    if (animal is Dog)
+                    {
+                        dogTest = (Dog)animal;
+                        lblInfoExtra.Text = "LastWalkDate";
+                        lblpInfoExtra.Text = Convert.ToString(dogTest.LastWalkDate);
+                        lblpInfoPrice.Text = Convert.ToString(dogTest.Price);
+                    }
+
+                    //Zelfde als hier boven
+                    /*if (animal.GetType() == typeof(Cat))
                     {
                         Cat cat = (Cat)animal;
                         lblInfoExtra.Text = "Bad Habit";
@@ -226,7 +265,7 @@ namespace Dierenasiel
                     {
                         lblInfoExtra.Text = "";
                         lblpInfoExtra.Text = "";
-                    }
+                    }*/
                 }
             }
             DisableButtons();
@@ -259,6 +298,32 @@ namespace Dierenasiel
                 chbReserved.Enabled = true;
                 btnDeleteAnimal.Enabled = true;
             }
+        }
+
+        private void rbName_CheckedChanged(object sender, EventArgs e)
+        {
+            if (autoNameSort)
+            {
+                autoNameSort = false;
+            }
+            else
+            {
+                autoNameSort = true;
+            }
+            RefreshAnimals(false);
+        }
+
+        private void rbChipnr_CheckedChanged(object sender, EventArgs e)
+        {
+            if (autoChipnrSort)
+            {
+                autoChipnrSort = false;
+            }
+            else
+            {
+                autoChipnrSort = true;
+            }
+            RefreshAnimals(false);
         }
     }
 }

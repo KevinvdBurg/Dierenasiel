@@ -60,9 +60,15 @@
             this.lblInfoPrice = new System.Windows.Forms.Label();
             this.lblGender = new System.Windows.Forms.Label();
             this.cbGender = new System.Windows.Forms.ComboBox();
+            this.lblpInfoGender = new System.Windows.Forms.Label();
+            this.lblInfoGender = new System.Windows.Forms.Label();
+            this.gbSortButton = new System.Windows.Forms.GroupBox();
+            this.rbName = new System.Windows.Forms.RadioButton();
+            this.rbChipnr = new System.Windows.Forms.RadioButton();
             this.gbCat.SuspendLayout();
             this.gbDog.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nupChip)).BeginInit();
+            this.gbSortButton.SuspendLayout();
             this.SuspendLayout();
             // 
             // createAnimalButton
@@ -221,7 +227,7 @@
             // lblInfoExtra
             // 
             this.lblInfoExtra.AutoSize = true;
-            this.lblInfoExtra.Location = new System.Drawing.Point(520, 192);
+            this.lblInfoExtra.Location = new System.Drawing.Point(520, 212);
             this.lblInfoExtra.Name = "lblInfoExtra";
             this.lblInfoExtra.Size = new System.Drawing.Size(0, 13);
             this.lblInfoExtra.TabIndex = 20;
@@ -253,7 +259,7 @@
             // lblpInfoExtra
             // 
             this.lblpInfoExtra.AutoSize = true;
-            this.lblpInfoExtra.Location = new System.Drawing.Point(671, 192);
+            this.lblpInfoExtra.Location = new System.Drawing.Point(671, 212);
             this.lblpInfoExtra.Name = "lblpInfoExtra";
             this.lblpInfoExtra.Size = new System.Drawing.Size(0, 13);
             this.lblpInfoExtra.TabIndex = 24;
@@ -261,7 +267,7 @@
             // btnDeleteAnimal
             // 
             this.btnDeleteAnimal.Enabled = false;
-            this.btnDeleteAnimal.Location = new System.Drawing.Point(516, 254);
+            this.btnDeleteAnimal.Location = new System.Drawing.Point(516, 274);
             this.btnDeleteAnimal.Name = "btnDeleteAnimal";
             this.btnDeleteAnimal.Size = new System.Drawing.Size(212, 23);
             this.btnDeleteAnimal.TabIndex = 25;
@@ -273,7 +279,7 @@
             // 
             this.chbReserved.AutoSize = true;
             this.chbReserved.Enabled = false;
-            this.chbReserved.Location = new System.Drawing.Point(516, 220);
+            this.chbReserved.Location = new System.Drawing.Point(516, 240);
             this.chbReserved.Name = "chbReserved";
             this.chbReserved.Size = new System.Drawing.Size(72, 17);
             this.chbReserved.TabIndex = 26;
@@ -353,11 +359,66 @@
             this.cbGender.Size = new System.Drawing.Size(200, 21);
             this.cbGender.TabIndex = 34;
             // 
+            // lblpInfoGender
+            // 
+            this.lblpInfoGender.AutoSize = true;
+            this.lblpInfoGender.Location = new System.Drawing.Point(667, 192);
+            this.lblpInfoGender.Name = "lblpInfoGender";
+            this.lblpInfoGender.Size = new System.Drawing.Size(0, 13);
+            this.lblpInfoGender.TabIndex = 36;
+            // 
+            // lblInfoGender
+            // 
+            this.lblInfoGender.AutoSize = true;
+            this.lblInfoGender.Location = new System.Drawing.Point(513, 193);
+            this.lblInfoGender.Name = "lblInfoGender";
+            this.lblInfoGender.Size = new System.Drawing.Size(42, 13);
+            this.lblInfoGender.TabIndex = 35;
+            this.lblInfoGender.Text = "Gender";
+            // 
+            // gbSortButton
+            // 
+            this.gbSortButton.Controls.Add(this.rbName);
+            this.gbSortButton.Controls.Add(this.rbChipnr);
+            this.gbSortButton.Location = new System.Drawing.Point(418, 529);
+            this.gbSortButton.Name = "gbSortButton";
+            this.gbSortButton.Size = new System.Drawing.Size(170, 64);
+            this.gbSortButton.TabIndex = 37;
+            this.gbSortButton.TabStop = false;
+            this.gbSortButton.Text = "Auto Sort";
+            // 
+            // rbName
+            // 
+            this.rbName.AutoSize = true;
+            this.rbName.Checked = true;
+            this.rbName.Location = new System.Drawing.Point(18, 29);
+            this.rbName.Name = "rbName";
+            this.rbName.Size = new System.Drawing.Size(53, 17);
+            this.rbName.TabIndex = 8;
+            this.rbName.TabStop = true;
+            this.rbName.Text = "Name";
+            this.rbName.UseVisualStyleBackColor = true;
+            this.rbName.CheckedChanged += new System.EventHandler(this.rbName_CheckedChanged);
+            // 
+            // rbChipnr
+            // 
+            this.rbChipnr.AutoSize = true;
+            this.rbChipnr.Location = new System.Drawing.Point(90, 29);
+            this.rbChipnr.Name = "rbChipnr";
+            this.rbChipnr.Size = new System.Drawing.Size(60, 17);
+            this.rbChipnr.TabIndex = 9;
+            this.rbChipnr.Text = "ChipNr.";
+            this.rbChipnr.UseVisualStyleBackColor = true;
+            this.rbChipnr.CheckedChanged += new System.EventHandler(this.rbChipnr_CheckedChanged);
+            // 
             // AdministrationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 553);
+            this.ClientSize = new System.Drawing.Size(800, 627);
+            this.Controls.Add(this.gbSortButton);
+            this.Controls.Add(this.lblpInfoGender);
+            this.Controls.Add(this.lblInfoGender);
             this.Controls.Add(this.cbGender);
             this.Controls.Add(this.lblGender);
             this.Controls.Add(this.lblpInfoPrice);
@@ -393,6 +454,8 @@
             this.gbDog.ResumeLayout(false);
             this.gbDog.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nupChip)).EndInit();
+            this.gbSortButton.ResumeLayout(false);
+            this.gbSortButton.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -432,6 +495,11 @@
         private System.Windows.Forms.Label lblInfoPrice;
         private System.Windows.Forms.Label lblGender;
         private System.Windows.Forms.ComboBox cbGender;
+        private System.Windows.Forms.Label lblpInfoGender;
+        private System.Windows.Forms.Label lblInfoGender;
+        private System.Windows.Forms.GroupBox gbSortButton;
+        private System.Windows.Forms.RadioButton rbName;
+        private System.Windows.Forms.RadioButton rbChipnr;
     }
 }
 

@@ -46,6 +46,8 @@
   <ItemGroup>
     <Compile Include="Administration.cs" />
     <Compile Include="Animal.cs" />
+    <Compile Include="AnimalNameSorter.cs" />
+    <Compile Include="Animals.cs" />
     <Compile Include="Cat.cs" />
     <Compile Include="AdministrationForm.cs">
       <SubType>Form</SubType>
