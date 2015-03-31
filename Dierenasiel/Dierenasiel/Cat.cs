@@ -5,6 +5,7 @@ using System.Text;
 
 namespace Dierenasiel
 {
+    [Serializable]
     public class Cat : Animal, Prijsbaar
     {
         /// <summary>

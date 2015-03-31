@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+
 namespace Dierenasiel
 {
+    [Serializable]
     public abstract class Animal : IComparable<Animal>
     {
         //FIELDS

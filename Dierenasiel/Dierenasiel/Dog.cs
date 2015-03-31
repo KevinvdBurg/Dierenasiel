@@ -5,6 +5,7 @@ using System.Text;
 
 namespace Dierenasiel
 {
+    [Serializable]
     public class Dog : Animal, Prijsbaar
     {
         public SimpleDate LastWalkDate { get; private set; }

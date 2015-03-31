@@ -1,12 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 
 namespace Dierenasiel
 {
     public class Administration
     {
+
+        //FIELDS
+        /// <summary>
+        ///the location of the save folder
+        /// </summary>
+        string directory = @"c:\Dierenasiel";
+
         //PROPERTIES
         /// <summary>
         /// List<Animal> animals includes all instances of the Animal class that are created within this system.
@@ -79,5 +88,66 @@ namespace Dierenasiel
             }
             return null;
         }
+
+        /// <summary>
+        /// Saves the list of animals to save.bin in the C:/Dierenasiel
+        /// </summary>
+        public void SaveContent()
+        {
+            //Creates a new Directory @ C:/Dierenasiel
+            try
+            {
+                // Determine whether the directory exists. 
+                if (Directory.Exists(directory))
+                {
+                    Console.WriteLine("That directory exists already.");
+                    return;
+                }
+
+                // Try to create the directory.
+                DirectoryInfo di = Directory.CreateDirectory(directory);
+                Console.WriteLine("The directory was created successfully at {0}.", Directory.GetCreationTime(directory));
+
+                // Delete the directory.
+                //di.Delete();
+                ///Console.WriteLine("The directory was deleted successfully.");
+            }
+            catch (Exception e)
+            {
+                //throw exeption
+                Console.WriteLine("The process failed: {0}", e.ToString());
+            }
+            finally
+            {
+                string serializationFile = Path.Combine(directory, "save.bin");
+
+                //serialize
+                using (Stream stream = File.Open(serializationFile, FileMode.Create))
+                {
+                    var bformatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
+
+                    bformatter.Serialize(stream, animals);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Load the save.bin from the C:/Dierenasiel folder
+        /// </summary>
+        public void LoadContent()
+        {
+            string serializationFile = Path.Combine(directory, "save.bin");
+           
+            //deserialize
+            using (Stream stream = File.Open(serializationFile, FileMode.Open))
+            {
+                var bformatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
+
+                List<Animal> steamAnimals = (List<Animal>)bformatter.Deserialize(stream);
+                this.animals = steamAnimals;
+            }
+        }
+
+
     }
 }

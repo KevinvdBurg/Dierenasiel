@@ -65,10 +65,14 @@
             this.gbSortButton = new System.Windows.Forms.GroupBox();
             this.rbName = new System.Windows.Forms.RadioButton();
             this.rbChipnr = new System.Windows.Forms.RadioButton();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.btnLoad = new System.Windows.Forms.Button();
             this.gbCat.SuspendLayout();
             this.gbDog.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nupChip)).BeginInit();
             this.gbSortButton.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // createAnimalButton
@@ -411,11 +415,43 @@
             this.rbChipnr.UseVisualStyleBackColor = true;
             this.rbChipnr.CheckedChanged += new System.EventHandler(this.rbChipnr_CheckedChanged);
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.btnLoad);
+            this.groupBox1.Controls.Add(this.btnSave);
+            this.groupBox1.Location = new System.Drawing.Point(12, 529);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(207, 64);
+            this.groupBox1.TabIndex = 38;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Save/Load";
+            // 
+            // btnSave
+            // 
+            this.btnSave.Location = new System.Drawing.Point(9, 26);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(75, 23);
+            this.btnSave.TabIndex = 0;
+            this.btnSave.Text = "Save";
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
+            // btnLoad
+            // 
+            this.btnLoad.Location = new System.Drawing.Point(104, 26);
+            this.btnLoad.Name = "btnLoad";
+            this.btnLoad.Size = new System.Drawing.Size(75, 23);
+            this.btnLoad.TabIndex = 1;
+            this.btnLoad.Text = "Load";
+            this.btnLoad.UseVisualStyleBackColor = true;
+            this.btnLoad.Click += new System.EventHandler(this.btnLoad_Click);
+            // 
             // AdministrationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 627);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.gbSortButton);
             this.Controls.Add(this.lblpInfoGender);
             this.Controls.Add(this.lblInfoGender);
@@ -456,6 +492,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.nupChip)).EndInit();
             this.gbSortButton.ResumeLayout(false);
             this.gbSortButton.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -500,6 +537,9 @@
         private System.Windows.Forms.GroupBox gbSortButton;
         private System.Windows.Forms.RadioButton rbName;
         private System.Windows.Forms.RadioButton rbChipnr;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Button btnLoad;
+        private System.Windows.Forms.Button btnSave;
     }
 }
 
