@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net.Mime;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Windows.Forms;
 
 namespace Dierenasiel
 {
@@ -15,6 +17,8 @@ namespace Dierenasiel
         ///the location of the save folder
         /// </summary>
         string directory = @"c:\Dierenasiel";
+        //string path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+
 
         //PROPERTIES
         /// <summary>
@@ -32,7 +36,15 @@ namespace Dierenasiel
         /// </summary>
         public Administration()
         {
-            animals = new List<Animal>();
+            try
+            {
+                animals = new List<Animal>();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("List is not created: {0}", e.ToString());
+            }
+            
         }
 
         //METHODS
@@ -48,9 +60,11 @@ namespace Dierenasiel
                 animals.Add(animal);
                 return true;
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                Console.WriteLine("Adding an Animal has failed: {0}", e.ToString());
                 return false;
+
             }
         }
         /// <summary>
@@ -60,16 +74,25 @@ namespace Dierenasiel
         /// <returns></returns>
         public bool RemoveAnimal(int chipRegistrationNumber)
         {
-            Animal animalToRemove = null;
-            foreach (Animal animal in animals)
+            try
             {
-                if (animal.ChipRegistrationNumber == Convert.ToInt32(chipRegistrationNumber))
+                Animal animalToRemove = null;
+                foreach (Animal animal in animals)
                 {
-                    animalToRemove = animal;
+                    if (animal.ChipRegistrationNumber == Convert.ToInt32(chipRegistrationNumber))
+                    {
+                        animalToRemove = animal;
+                    }
                 }
+                animals.Remove(animalToRemove);
+                return true;
             }
-            animals.Remove(animalToRemove);
-            return true;
+            catch (Exception)
+            {
+                
+                throw;
+            }
+            
         }
         /// <summary>
         /// The FindAnimal method finds a animal with the given chipRegistrationNumber.
@@ -114,7 +137,6 @@ namespace Dierenasiel
             }
             catch (Exception e)
             {
-                //throw exeption
                 Console.WriteLine("The process failed: {0}", e.ToString());
             }
             finally
