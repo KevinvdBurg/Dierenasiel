@@ -138,7 +138,7 @@ namespace Dierenasiel
                 }
                 else
                 {
-                    MessageBox.Show("geen map geselecteerd");
+                    throw new NoMapException("Can not Select no map", "Save File Dialog");
                 }
             }
             catch (Exception e)
@@ -206,5 +206,14 @@ namespace Dierenasiel
         }
 
 
+    }
+
+    public class NoMapException : Exception
+    {
+        public NoMapException(string canNotSelectNoMap, string saveFileDialog)
+        {
+            Console.WriteLine(canNotSelectNoMap, saveFileDialog);
+            //throw new NotImplementedException();
+        }
     }
 }
