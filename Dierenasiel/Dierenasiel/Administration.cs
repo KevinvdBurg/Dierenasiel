@@ -153,14 +153,14 @@ namespace Dierenasiel
                 if (Directory.Exists(directory))
                 {
                     Console.WriteLine("That directory exists already.");
-                    return;
+                }
+                else
+                {
+                    // Try to create the directory.
+                    DirectoryInfo di = Directory.CreateDirectory(directory);
+                    Console.WriteLine("The directory was created successfully at {0}.", Directory.GetCreationTime(directory));
                 }
 
-                // Try to create the directory.
-                DirectoryInfo di = Directory.CreateDirectory(directory);
-                Console.WriteLine("The directory was created successfully at {0}.", Directory.GetCreationTime(directory));
-
-                
                 string serializationFile = Path.Combine(directory, file);
                 //string serializationFile = directory;
 
@@ -189,7 +189,10 @@ namespace Dierenasiel
             openFileDialog1.Filter = "Dierasiel|*.bin";
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                directory = openFileDialog1.FileName;
+                string fullPath = openFileDialog1.FileName;
+                int last = fullPath.LastIndexOf("\\");
+                directory = fullPath.Substring(0, last);
+                file = fullPath.Substring(last + 1);
             }
 
             string serializationFile = Path.Combine(directory, file);
