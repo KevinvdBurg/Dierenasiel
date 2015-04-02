@@ -5,7 +5,9 @@ using System.Linq;
 using System.Net.Mime;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Threading;
 using System.Windows.Forms;
+using System.Windows.Forms.VisualStyles;
 
 namespace Dierenasiel
 {
@@ -14,10 +16,13 @@ namespace Dierenasiel
 
         //FIELDS
         /// <summary>
-        ///the location of the save folder
+        ///the location of the Default save folder
         /// </summary>
         string directory = @"c:\Dierenasiel";
-        //string path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+        /// <summary>
+        /// default name of the save file
+        /// </summary>
+        string file = "save.bin";
 
 
         //PROPERTIES
@@ -117,7 +122,31 @@ namespace Dierenasiel
         /// </summary>
         public void SaveContent()
         {
-            //Creates a new Directory @ C:/Dierenasiel
+            try
+            {
+                SaveFileDialog saveFileDialog = new SaveFileDialog();
+                saveFileDialog.Filter = "Dierasiel|*.bin";
+                saveFileDialog.AddExtension = true;
+
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    string fullPath = saveFileDialog.FileName;
+                    int last = fullPath.LastIndexOf("\\");
+                    directory = fullPath.Substring(0, last);
+                    file = fullPath.Substring(last + 1);
+                    //string[] ar = fullPath.Split('\\');
+                }
+                else
+                {
+                    MessageBox.Show("geen map geselecteerd");
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("geen map geselecteerd");
+                Console.WriteLine("Noting selected: {0}", e.ToString());
+            }
+
             try
             {
                 // Determine whether the directory exists. 
@@ -131,17 +160,9 @@ namespace Dierenasiel
                 DirectoryInfo di = Directory.CreateDirectory(directory);
                 Console.WriteLine("The directory was created successfully at {0}.", Directory.GetCreationTime(directory));
 
-                // Delete the directory.
-                //di.Delete();
-                ///Console.WriteLine("The directory was deleted successfully.");
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("The process failed: {0}", e.ToString());
-            }
-            finally
-            {
-                string serializationFile = Path.Combine(directory, "save.bin");
+                
+                string serializationFile = Path.Combine(directory, file);
+                //string serializationFile = directory;
 
                 //serialize
                 using (Stream stream = File.Open(serializationFile, FileMode.Create))
@@ -149,8 +170,14 @@ namespace Dierenasiel
                     var bformatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
 
                     bformatter.Serialize(stream, animals);
+                    MessageBox.Show("Dieren zijn opgeslagen");
                 }
             }
+            catch (Exception e)
+            {
+                Console.WriteLine("The process failed: {0}", e.ToString());
+            }
+           
         }
 
         /// <summary>
@@ -158,7 +185,14 @@ namespace Dierenasiel
         /// </summary>
         public void LoadContent()
         {
-            string serializationFile = Path.Combine(directory, "save.bin");
+            OpenFileDialog openFileDialog1 = new OpenFileDialog();
+            openFileDialog1.Filter = "Dierasiel|*.bin";
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                directory = openFileDialog1.FileName;
+            }
+
+            string serializationFile = Path.Combine(directory, file);
            
             //deserialize
             using (Stream stream = File.Open(serializationFile, FileMode.Open))
@@ -168,6 +202,7 @@ namespace Dierenasiel
                 List<Animal> steamAnimals = (List<Animal>)bformatter.Deserialize(stream);
                 this.animals = steamAnimals;
             }
+            MessageBox.Show("Dieren zijn geladen");
         }
 
 

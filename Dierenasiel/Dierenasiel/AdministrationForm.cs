@@ -329,15 +329,13 @@ namespace Dierenasiel
         private void btnSave_Click(object sender, EventArgs e)
         {
             administration.SaveContent();
-            MessageBox.Show("Dieren zijn opgeslagen");
+            
         }
 
         private void btnLoad_Click(object sender, EventArgs e)
         {
             administration.LoadContent();
             RefreshAnimals(false);
-
-            MessageBox.Show("Dieren zijn geladen");
         }
     }
 }
