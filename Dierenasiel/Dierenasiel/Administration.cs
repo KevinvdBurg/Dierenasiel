@@ -67,7 +67,7 @@ namespace Dierenasiel
             }
             catch (Exception e)
             {
-                Console.WriteLine("Adding an Animal has failed: {0}", e.ToString());
+                Console.WriteLine("Adding an Animal has failed: {0}", e.Message);
                 return false;
 
             }
@@ -79,6 +79,7 @@ namespace Dierenasiel
         /// <returns></returns>
         public bool RemoveAnimal(int chipRegistrationNumber)
         {
+            bool sucRemoveAnimal = false;
             try
             {
                 Animal animalToRemove = null;
@@ -89,15 +90,16 @@ namespace Dierenasiel
                         animalToRemove = animal;
                     }
                 }
+                sucRemoveAnimal = true;
                 animals.Remove(animalToRemove);
-                return true;
+
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                
-                throw;
+                Console.WriteLine("Unable to Remove: {0}", e.Message);
             }
-            
+            return sucRemoveAnimal;
+
         }
         /// <summary>
         /// The FindAnimal method finds a animal with the given chipRegistrationNumber.
@@ -144,7 +146,7 @@ namespace Dierenasiel
             catch (Exception e)
             {
                 MessageBox.Show("geen map geselecteerd");
-                Console.WriteLine("Noting selected: {0}", e.ToString());
+                Console.WriteLine("Noting selected: {0}", e.Message);
             }
 
             try
@@ -175,7 +177,7 @@ namespace Dierenasiel
             }
             catch (Exception e)
             {
-                Console.WriteLine("The process failed: {0}", e.ToString());
+                Console.WriteLine("The process failed: {0}", e.Message);
             }
            
         }
