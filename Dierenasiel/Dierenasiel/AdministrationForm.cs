@@ -276,11 +276,11 @@ namespace Dierenasiel
         private void btnDeleteAnimal_Click(object sender, EventArgs e)
         {
             int tempChip = -1;
-            foreach (Animal animal in administration.animals)
+            foreach (Animal animal in e.animals)
             {
                 if (cbAnimalNames.SelectedItem == animal.Name)
                 {
-                    tempChip = animal.ChipRegistrationNumber;
+                    tempChip = e.animal.ChipRegistrationNumber;
                 }
             }
             administration.RemoveAnimal(tempChip);
