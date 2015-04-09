@@ -11,11 +11,9 @@ using System.Windows.Forms.VisualStyles;
 
 namespace Dierenasiel
 {
-    public delegate void AnimalAdded(object sender, AnimalEventArgs e);
     public class Administration
     {
         //FIELDS
-        public event AnimalAdded OnAnimalAdded;
         /// <summary>
         ///the location of the Default save folder
         /// </summary>
@@ -66,12 +64,7 @@ namespace Dierenasiel
         {
             try
             {
-                AnimalEventArgs e = new AnimalEventArgs();
-
-                e.animals.Add(animal);
-
-                OnAnimalAdded(this, e);
-
+                animals.Add(animal);
                 return true;
             }
             catch (Exception e)
