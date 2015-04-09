@@ -14,10 +14,13 @@ namespace Dierenasiel
     public partial class AdministrationForm : Form
     {
         //FIELDS
+        private bool hasChanged;
         /// <summary>
         /// The administration Male is an instance of the class Administration.
         /// </summary>
         private Administration administration;
+
+        AnimalEventArgs e = new AnimalEventArgs();
 
         /// <summary>
         /// The checkboxcheck is an bool that resembles wether or not an animal has been set to reserved.
@@ -38,7 +41,7 @@ namespace Dierenasiel
             checkboxcheck = false;
             administration = new Administration();
 
-            administration.OnAnimalAdded += administration_OnAnimalAdded;
+            administration.OnAnimalAdded +=administration_OnAnimalAdded;
 
             animalTypeComboBox.Items.Add(Animals.Cat);
             animalTypeComboBox.Items.Add(Animals.Dog);
@@ -52,20 +55,19 @@ namespace Dierenasiel
             animalTypeComboBox.SelectedIndex = 0;
 
             //Default Cats and Dogs
+            hasChanged = false;
             administration.Add(new Dog("Ivan", 3212, new SimpleDate(12, 3, 2014), Gender.Female,
                 new SimpleDate(12, 3, 2015)));
             administration.Add(new Dog("Milton", 45231, new SimpleDate(6, 12, 2010), Gender.Male,
                 new SimpleDate(11, 3, 2015)));
             administration.Add(new Cat("Kevin", 23452, new SimpleDate(12, 3, 405), Gender.Male, "Mummified"));
             administration.Add(new Cat("Abba", 99999, new SimpleDate(12, 3, 405), Gender.Female, "Loves Pools"));
-
-            //Ini Refresh
-            RefreshAnimals(false);
         }
 
         void administration_OnAnimalAdded(object sender, AnimalEventArgs e)
         {
-            RefreshAnimals(true);
+            hasChanged = true;
+            RefreshAnimals();
         }
 
         //METHODS
@@ -92,6 +94,8 @@ namespace Dierenasiel
                 return;
             }
 
+            hasChanged = false;
+
             if (animalTypeComboBox.SelectedItem.Equals(Animals.Cat))
             {
                 //Create New Cat
@@ -114,7 +118,6 @@ namespace Dierenasiel
                 //What?
                 MessageBox.Show("What?!");
             }
-            RefreshAnimals(false);
         }
 
         private void animalTypeComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -139,27 +142,27 @@ namespace Dierenasiel
         }
 
         //Refresh the combobox and the lists
-        private void RefreshAnimals(bool hasChanged)
+        private void RefreshAnimals()
         {
             lbReserved.Items.Clear();
             lbNotReserved.Items.Clear();
 
             if (autoChipnrSort)
             {
-                administration.animals.Sort();
+                e.animals.Sort();
             }
 
             if (autoNameSort)
             {
-                administration.animals.Sort(new AnimalNameSorter());
+                e.animals.Sort(new AnimalNameSorter());
             }
 
             if (!hasChanged)
             {
-                cbAnimalNames.DataSource = administration.animals.Select(a => a.Name).ToList();
+                cbAnimalNames.DataSource = e.animals.Select(a => a.Name).ToList();
             }
 
-            foreach (Animal animal in administration.animals)
+            foreach (Animal animal in e.animals)
             {
                 if (animal.IsReserved)
                 {
@@ -215,7 +218,8 @@ namespace Dierenasiel
                         }
                     }
                 }
-                RefreshAnimals(true);
+                hasChanged = true;
+                RefreshAnimals();
             }
         }
 
@@ -301,7 +305,8 @@ namespace Dierenasiel
                 }
             }
             administration.RemoveAnimal(tempChip);
-            RefreshAnimals(false);
+            hasChanged = false;
+            RefreshAnimals();
             DisableButtons();
         }
 
@@ -329,7 +334,8 @@ namespace Dierenasiel
             {
                 autoNameSort = true;
             }
-            RefreshAnimals(false);
+            hasChanged = false;
+            RefreshAnimals();
         }
 
         private void rbChipnr_CheckedChanged(object sender, EventArgs e)
@@ -342,7 +348,8 @@ namespace Dierenasiel
             {
                 autoChipnrSort = true;
             }
-            RefreshAnimals(false);
+            hasChanged = false;
+            RefreshAnimals();
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -353,7 +360,8 @@ namespace Dierenasiel
         private void btnLoad_Click(object sender, EventArgs e)
         {
             administration.LoadContent();
-            RefreshAnimals(false);
+            hasChanged = false;
+            RefreshAnimals();
         }
     }
 }

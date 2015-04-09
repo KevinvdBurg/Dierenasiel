@@ -26,7 +26,6 @@ namespace Dierenasiel
         /// </summary>
         private string file = "save.bin";
 
-
         //PROPERTIES
         /// <summary>
         /// List<Animal> animals includes all instances of the Animal class that are created within this system.
@@ -217,15 +216,6 @@ namespace Dierenasiel
                 this.animals = steamAnimals;
             }
             MessageBox.Show("Dieren zijn geladen");
-        }
-    }
-
-    public class NoMapException : Exception
-    {
-        public NoMapException(string canNotSelectNoMap, string saveFileDialog)
-        {
-            Console.WriteLine(canNotSelectNoMap, saveFileDialog);
-            //throw new NotImplementedException();
         }
     }
 }
