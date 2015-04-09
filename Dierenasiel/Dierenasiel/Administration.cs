@@ -13,16 +13,16 @@ namespace Dierenasiel
 {
     public class Administration
     {
-
         //FIELDS
         /// <summary>
         ///the location of the Default save folder
         /// </summary>
-        string directory = @"c:\Dierenasiel";
+        private string directory = @"c:\Dierenasiel";
+
         /// <summary>
         /// default name of the save file
         /// </summary>
-        string file = "save.bin";
+        private string file = "save.bin";
 
 
         //PROPERTIES
@@ -30,6 +30,9 @@ namespace Dierenasiel
         /// List<Animal> animals includes all instances of the Animal class that are created within this system.
         /// </summary>
         public List<Animal> animals { get; private set; }
+
+        public List<Animal> oldAnimals { get; private set; }
+
         /// <summary>
         /// The Animal Animal property is an instance of the Animal class.
         /// </summary>
@@ -43,13 +46,13 @@ namespace Dierenasiel
         {
             try
             {
+                animals = oldAnimals;
                 animals = new List<Animal>();
             }
             catch (Exception e)
             {
-                Console.WriteLine("List is not created: {0}", e.ToString());
+                Console.WriteLine("List is not created: {0}", e.Message);
             }
-            
         }
 
         //METHODS
@@ -69,9 +72,9 @@ namespace Dierenasiel
             {
                 Console.WriteLine("Adding an Animal has failed: {0}", e.Message);
                 return false;
-
             }
         }
+
         /// <summary>
         /// The RemoveAnimal method removes an animal that has the given chipRegistrationNumber from the list of animals.
         /// </summary>
@@ -92,15 +95,14 @@ namespace Dierenasiel
                 }
                 sucRemoveAnimal = true;
                 animals.Remove(animalToRemove);
-
             }
             catch (Exception e)
             {
                 Console.WriteLine("Unable to Remove: {0}", e.Message);
             }
             return sucRemoveAnimal;
-
         }
+
         /// <summary>
         /// The FindAnimal method finds a animal with the given chipRegistrationNumber.
         /// If an animal with the given chipRegistrationNumber is found, this method will return said animal, otherwise it will return false.
@@ -160,7 +162,8 @@ namespace Dierenasiel
                 {
                     // Try to create the directory.
                     DirectoryInfo di = Directory.CreateDirectory(directory);
-                    Console.WriteLine("The directory was created successfully at {0}.", Directory.GetCreationTime(directory));
+                    Console.WriteLine("The directory was created successfully at {0}.",
+                        Directory.GetCreationTime(directory));
                 }
 
                 string serializationFile = Path.Combine(directory, file);
@@ -179,7 +182,6 @@ namespace Dierenasiel
             {
                 Console.WriteLine("The process failed: {0}", e.Message);
             }
-           
         }
 
         /// <summary>
@@ -198,19 +200,17 @@ namespace Dierenasiel
             }
 
             string serializationFile = Path.Combine(directory, file);
-           
+
             //deserialize
             using (Stream stream = File.Open(serializationFile, FileMode.Open))
             {
                 var bformatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
 
-                List<Animal> steamAnimals = (List<Animal>)bformatter.Deserialize(stream);
+                List<Animal> steamAnimals = (List<Animal>) bformatter.Deserialize(stream);
                 this.animals = steamAnimals;
             }
             MessageBox.Show("Dieren zijn geladen");
         }
-
-
     }
 
     public class NoMapException : Exception
