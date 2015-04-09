@@ -38,6 +38,8 @@ namespace Dierenasiel
             checkboxcheck = false;
             administration = new Administration();
 
+            administration.OnAnimalAdded += administration_OnAnimalAdded;
+
             animalTypeComboBox.Items.Add(Animals.Cat);
             animalTypeComboBox.Items.Add(Animals.Dog);
             cbGender.Items.Add(Gender.Female);
@@ -59,6 +61,11 @@ namespace Dierenasiel
 
             //Ini Refresh
             RefreshAnimals(false);
+        }
+
+        void administration_OnAnimalAdded(object sender, AnimalEventArgs e)
+        {
+            RefreshAnimals(true);
         }
 
         //METHODS
