@@ -24,6 +24,7 @@ namespace Dierenasiel
         /// </summary>
         string file = "save.bin";
 
+
         //PROPERTIES
         /// <summary>
         /// List<Animal> animals includes all instances of the Animal class that are created within this system.
@@ -210,5 +211,14 @@ namespace Dierenasiel
         }
 
 
+    }
+
+    public class NoMapException : Exception
+    {
+        public NoMapException(string canNotSelectNoMap, string saveFileDialog)
+        {
+            Console.WriteLine(canNotSelectNoMap, saveFileDialog);
+            //throw new NotImplementedException();
+        }
     }
 }
