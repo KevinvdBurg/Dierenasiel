@@ -11,9 +11,11 @@ using System.Windows.Forms.VisualStyles;
 
 namespace Dierenasiel
 {
+    public delegate void AddedAnimal(object sender, AddedAnimalArgs e);
     public class Administration
     {
-
+        public event AddedAnimal OnAddedAnimal;
+        
         //FIELDS
         /// <summary>
         ///the location of the Default save folder
@@ -41,14 +43,14 @@ namespace Dierenasiel
         /// </summary>
         public Administration()
         {
-            try
+            /*try
             {
-                animals = new List<Animal>();
+                e.animals = new List<Animal>();
             }
             catch (Exception e)
             {
                 Console.WriteLine("List is not created: {0}", e.ToString());
-            }
+            }*/
             
         }
 
@@ -60,9 +62,10 @@ namespace Dierenasiel
         /// <returns></returns>
         public bool Add(Animal animal)
         {
+            
             try
             {
-                animals.Add(animal);
+                e.animals.Add(animal);
                 return true;
             }
             catch (Exception e)
@@ -83,7 +86,7 @@ namespace Dierenasiel
             try
             {
                 Animal animalToRemove = null;
-                foreach (Animal animal in animals)
+                foreach (Animal animal in e.animals)
                 {
                     if (animal.ChipRegistrationNumber == Convert.ToInt32(chipRegistrationNumber))
                     {
@@ -91,7 +94,7 @@ namespace Dierenasiel
                     }
                 }
                 sucRemoveAnimal = true;
-                animals.Remove(animalToRemove);
+                e.animals.Remove(animalToRemove);
 
             }
             catch (Exception e)
@@ -109,7 +112,7 @@ namespace Dierenasiel
         /// <returns></returns>
         public Animal FindAnimal(string chipRegistrationNumber)
         {
-            foreach (Animal animal in animals)
+            foreach (Animal animal in e.animals)
             {
                 if (animal.ChipRegistrationNumber == Convert.ToInt32(chipRegistrationNumber))
                 {
@@ -171,7 +174,7 @@ namespace Dierenasiel
                 {
                     var bformatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
 
-                    bformatter.Serialize(stream, animals);
+                    bformatter.Serialize(stream, e.animals);
                     MessageBox.Show("Dieren zijn opgeslagen");
                 }
             }
@@ -205,7 +208,7 @@ namespace Dierenasiel
                 var bformatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
 
                 List<Animal> steamAnimals = (List<Animal>)bformatter.Deserialize(stream);
-                this.animals = steamAnimals;
+                e.animals = steamAnimals;
             }
             MessageBox.Show("Dieren zijn geladen");
         }

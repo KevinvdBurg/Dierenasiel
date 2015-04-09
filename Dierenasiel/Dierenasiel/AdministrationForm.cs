@@ -11,9 +11,10 @@ using System.Windows.Forms;
 
 namespace Dierenasiel
 {
-
+    
     public partial class AdministrationForm : Form
     {
+        public AddedAnimalArgs e = new AddedAnimalArgs();
         //FIELDS
         /// <summary>
         /// The administration Male is an instance of the class Administration.
@@ -26,6 +27,7 @@ namespace Dierenasiel
         private bool autoNameSort;
         private bool autoChipnrSort;
 
+        
         //CONSTRUCTORS
         /// <summary>
         /// The constructor sets the initial values of the fields, creates a certain amount of premade instances of the Dog and Cat classes, and refreshes the animals list so these new instances will show up on the GUI.
@@ -33,7 +35,7 @@ namespace Dierenasiel
         public AdministrationForm()
         {
             InitializeComponent();
-
+            
             checkboxcheck = false;
             administration = new Administration();
 
@@ -54,7 +56,7 @@ namespace Dierenasiel
             administration.Add(new Dog("Milton", 45231, new SimpleDate(6, 12, 2010), Gender.Male, new SimpleDate(11, 3, 2015)));
             administration.Add(new Cat("Kevin", 23452, new SimpleDate(12, 3, 405), Gender.Male, "Mummified"));
             administration.Add(new Cat("Abba", 99999, new SimpleDate(12, 3, 405), Gender.Female, "Loves Pools"));
-
+             
             //Ini Refresh
             RefreshAnimals(false);
         }
@@ -68,7 +70,7 @@ namespace Dierenasiel
         private void createAnimalButton_Click(object sender, EventArgs e)
         {
             string name = tbName.Text;
-            Animal chipAnimal = administration.animals.Find(Animal => Animal.ChipRegistrationNumber == Convert.ToInt32(nupChip.Value));
+            Animal chipAnimal = e.animals.Find(Animal => Animal.ChipRegistrationNumber == Convert.ToInt32(nupChip.Value));
 
             if (chipAnimal != null)
             {
